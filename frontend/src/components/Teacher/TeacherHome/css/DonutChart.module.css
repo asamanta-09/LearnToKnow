@@ -1,0 +1,14 @@
+.chart-container {
+  max-width: 500px;
+  padding: 20px;
+  background-color: #fff;
+  margin: 50px 50px 50px 50px;
+  border-radius: 15px;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+  padding: 40px;
+}

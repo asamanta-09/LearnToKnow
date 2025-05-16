@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap");
+
+.hr-underline {
+  width: 90%;
+  margin: 0 auto;
+  border: 2px solid #fff;
+  margin-bottom: 1rem;
+}
+
+.course-log-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 2rem;
+}
+
+.course-log-title-h4 {
+  background: linear-gradient(270deg, #1e0b04, #ff7700db);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-family: "Cinzel", serif;
+}
+
+.course-log-title-h4 h4 {
+  color: #fff;
+  margin: 0;
+  font-weight: 700;
+}
+
+.course-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 2rem;
+  justify-content: flex-start;
+}
+
+.course-card-item {
+  flex: 1 1 250px;
+  max-width: 300px;
+  cursor: pointer;
+}

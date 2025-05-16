@@ -1,0 +1,26 @@
+<svg width="210" height="60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define a gradient for a more refined blue color fill -->
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4a90e2; stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#003366; stop-opacity:1" />
+    </linearGradient>
+    <!-- Define a drop shadow filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="3" dy="3" result="offsetblur"/>
+      <feFlood flood-color="rgba(0, 0, 0, 0.25)"/>
+      <feComposite in2="offsetblur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Text element with gradient fill, shadow, and spacing for logo effect -->
+  <text x="10" y="40" font-family="Georgia, serif" font-size="20" font-weight="bold"
+        fill="url(#blueGradient)" filter="url(#shadow)" letter-spacing="1.5">
+    LearnToKnow
+  </text>
+</svg>
