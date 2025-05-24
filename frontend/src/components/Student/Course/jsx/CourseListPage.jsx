@@ -33,7 +33,7 @@ const CourseListPage = () => {
         </div>
       </div>
     </>
-  )
+  ) 
 }
 
 export default CourseListPage

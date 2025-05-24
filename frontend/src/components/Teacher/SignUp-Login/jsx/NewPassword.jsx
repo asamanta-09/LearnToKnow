@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import styles from "../css/NewPassword.module.css";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import {toast} from 'react-toastify';
 
 import { IonIcon } from "@ionic/react";
-import { lockClosedOutline, logoFirebase } from "ionicons/icons";
+import { lockClosedOutline, logoFirebase, menuOutline, closeOutline } from "ionicons/icons";
 
 function NewPasswordTeacher() {
   const [password, setPassword] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const location = useLocation();
   const { email } = location.state || {};
@@ -16,20 +18,22 @@ function NewPasswordTeacher() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Password and confirm password do not match");
+      toast("Password and confirm password do not match");
       return;
     }
 
     try {
       const res = await axios.post('/teacher/passwordUpdate', { email, password }, { withCredentials: true });
       if (res.data.success) {
+        toast.success("Password updated successfully");
+        toast.info("you are redirecting to login page..");
         navigate('/teachers/login');
       } else {
-        alert(res.data.message);
+        toast(res.data.message);
       }
     } catch (error) {
       console.error('Error in updating password:', error);
-      alert("Something went wrong while updating the password");
+      toast("Something went wrong while updating the password");
     }
   };
 
@@ -41,6 +45,13 @@ function NewPasswordTeacher() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
+
         <nav className={styles.newpassword_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -48,6 +59,17 @@ function NewPasswordTeacher() {
           <Link to="/teachers/signup">Sign Up</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/teachers/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
+      </div>
 
       <section className={styles.newpassword_home}>
         <div className={styles.newpassword_content}>

@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import { IonIcon } from "@ionic/react";
-import { mailOutline, lockClosedOutline, logoFirebase } from 'ionicons/icons';
+import { mailOutline, lockClosedOutline, logoFirebase, closeOutline, menuOutline } from 'ionicons/icons';
 
 import styles from "../css/LoginForm.module.css";
 
 function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -40,6 +41,12 @@ function LoginPage() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.login_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -47,6 +54,17 @@ function LoginPage() {
           <Link to="/students/signup">Sign Up</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+      </div>
 
       <section className={styles.login_home}>
         <div className={styles.login_content}>
@@ -56,7 +74,7 @@ function LoginPage() {
         </div>
         <div className={styles.login_wrapper_login}>
           <h2>Student Login</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.login_form}>
             <div className={styles.login_input_box}>
               <span className={styles.login_icon}>
                 <IonIcon icon={mailOutline} />

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
 
 .pageWrapper {
   min-height: 100vh;
@@ -16,7 +16,7 @@
 }
 
 .formTitlecreate {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 2.5rem;
   font-weight: 600;
   text-align: center;
@@ -87,7 +87,7 @@
 .floatingInput:focus + .floatingLabel,
 .floatingInput:not(:placeholder-shown) + .floatingLabel,
 .floatingInput[type="file"]:valid + .floatingLabel {
-  top: -8px;
+  top: -10px;
   left: 10px;
   font-size: 0.75rem;
   color: #000;
@@ -98,12 +98,13 @@
   justify-content: space-between;
   align-items: center;
   padding-top: 10px;
+  gap: 20px;
 }
 
 .submitButton {
   width: 40%;
   padding: 14px;
-  background: linear-gradient(90deg, #1e0b04, #ff7700db);
+  background: linear-gradient(to right, #ff8008, #ffc837);
   border: none;
   border-radius: 17px;
   font-size: 1rem;
@@ -114,9 +115,8 @@
 }
 
 .submitButton:hover {
-  background: linear-gradient(90deg, #ff7700db, #1e0b04);
+  background: linear-gradient(to right, #ff9900, #ff6600);
 }
-
 
 /* for modal */
 .modalOverlay {
@@ -151,4 +151,56 @@
   background: transparent;
   border: none;
   cursor: pointer;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+  .formContainer {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .formTitlecreate {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lastPart {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+
+  .modalContent {
+    padding: 1rem;
+  }
+
+  .floatingInput {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalContent {
+    width: 95%;
+  }
+
+  .formTitlecreate {
+    font-size: 1.2rem;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font-size: 1rem;
+  }
 }

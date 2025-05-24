@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import {toast} from 'react-toastify';
 
 import { IonIcon } from "@ionic/react";
 import {
   personOutline, mailOutline, callOutline, calendarOutline,
   accessibilityOutline, createOutline, briefcaseOutline,
   businessOutline, peopleOutline, schoolOutline, libraryOutline,
-  lockClosedOutline, logoFirebase
+  lockClosedOutline, logoFirebase, closeOutline,menuOutline
 } from "ionicons/icons";
 
 import styles from "../css/SignupForm.module.css";
@@ -15,6 +16,7 @@ import styles from "../css/SignupForm.module.css";
 function SignupFormTeacher() {
   const [currentStep, setCurrentStep] = useState(0);
   const [errors, setErrors] = useState({});
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -133,8 +135,8 @@ function SignupFormTeacher() {
       academic_details: (qualification || qualifying_institution) ? [{ qualification, qualifying_institution }] : undefined,
       password
     };
- 
-    axios.post('/teacher/generateOTP', { email: teacherData.email ,name:teacherData.name}, { withCredentials: true })
+
+    axios.post('/teacher/generateOTP', { email: teacherData.email, name: teacherData.name }, { withCredentials: true })
       .then((res) => {
         if (res.data?.success === true) {
           setFormData({
@@ -143,7 +145,7 @@ function SignupFormTeacher() {
             qualification: "", qualifying_institution: "", password: "", confirm_password: ""
           });
 
-          alert(res.data?.message);
+          toast.info(res.data?.message);
           navigate('/teachers/email-verification', { state: { teacherData } });
         } else {
           alert(res.data?.message);
@@ -217,12 +219,12 @@ function SignupFormTeacher() {
     <>
       <div className={styles.signup_input_box}>
         <span className={styles.signup_icon}><IonIcon icon={businessOutline} /></span>
-        <input type="text" name="worksAt" value={formData.institution} onChange={handleChange} onBlur={handleBlur} />
+        <input type="text" name="worksAt" value={formData.worksAt} onChange={handleChange} onBlur={handleBlur} />
         <label>Works At</label>
       </div>
       <div className={styles.signup_input_box}>
         <span className={styles.signup_icon}><IonIcon icon={peopleOutline} /></span>
-        <input type="text" name="job_role" value={formData.course_or_job_role} onChange={handleChange} onBlur={handleBlur} />
+        <input type="text" name="job_role" value={formData.job_role} onChange={handleChange} onBlur={handleBlur} />
         <label>Job Role</label>
       </div>
       <div className={styles.signup_input_box}>
@@ -262,12 +264,18 @@ function SignupFormTeacher() {
   ];
 
   return (
-    <>
+    <div className={styles.signup_body}>
       <header className={styles.signup_header}>
         <Link to="#" className={styles.signup_logo}>
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.signup_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -275,6 +283,18 @@ function SignupFormTeacher() {
           <Link to="/teachers/login">Login</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/teachers/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+      </div>
+
       <section className={styles.signup_home}>
         <div className={styles.signup_wrapper_login}>
           <h2>Teachers' Registration</h2>
@@ -285,10 +305,10 @@ function SignupFormTeacher() {
         <div className={styles.signup_content}>
           <h3>Join our community today!</h3>
           <p>A teacher plants seeds of knowledge, nurturing minds with patience and heart...</p>
-          <Link to="#">Learn More</Link>
+          <Link className={styles.leranmorelink} to="#">Learn More</Link>
         </div>
       </section>
-    </>
+    </div>
   );
 }
 

@@ -140,7 +140,7 @@ const Navbar = () => {
             <span className={styles['notification-count']}>10+</span>
             <span className={styles['notification']}><CiBellOn /></span>
             <span className={styles['profile']}>
-              <img className={styles['img-profile']} src="/nisha.webp" alt="not-found" onClick={profileclick} />
+              <img className={styles['img-profile']} src="/profile.png" alt="not-found" onClick={profileclick} />
               <div className={styles["profile-menu"]}>
                 {profileClicked && <ProfileCardDropDown />}
               </div>

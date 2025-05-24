@@ -4,10 +4,11 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 import { IonIcon } from "@ionic/react";
-import { lockClosedOutline, logoFirebase } from "ionicons/icons";
+import { lockClosedOutline, logoFirebase, closeOutline, menuOutline } from "ionicons/icons";
 
 function NewPassword() {
   const [password, setPassword] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const location = useLocation();
   const { email } = location.state || {};
@@ -41,6 +42,12 @@ function NewPassword() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.newpassword_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -48,6 +55,17 @@ function NewPassword() {
           <Link to="/students/signup">Sign Up</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+      </div>
 
       <section className={styles.newpassword_home}>
         <div className={styles.newpassword_content}>

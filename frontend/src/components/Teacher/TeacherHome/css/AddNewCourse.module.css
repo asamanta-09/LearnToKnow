@@ -49,3 +49,30 @@
   text-align: center;
   opacity: 0.2;
 }
+
+@media (max-width: 768px) {
+  .addnew-title-h4 {
+    margin-left: 8px;
+    width: 100%;
+    background: transparent;
+  }
+  .addnew-title-h4 h4 {
+    margin-left: 8px;
+  }
+  .add-card {
+    width: 150px;
+    height: 100px;
+    margin: 20px 17px 25px 23px;
+  }
+  .add-symbol {
+    font-size: 40px;
+    margin-bottom: 5px;
+  }
+  .add-text {
+    font-size: 12px;
+  }
+  .hr-underline {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}

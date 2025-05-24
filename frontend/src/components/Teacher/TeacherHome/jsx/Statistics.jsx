@@ -6,7 +6,7 @@ const Statistics = () => {
   return (
     <>
       <div className={styles['statistics-title-h4']} >
-        <h4>Statistics</h4>
+        <h4>Statistics</h4><hr />
       </div>
     <DonutChart />
     </>

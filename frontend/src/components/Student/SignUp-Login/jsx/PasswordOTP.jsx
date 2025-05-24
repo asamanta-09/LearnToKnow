@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import { IonIcon } from "@ionic/react";
-import { logoFirebase, keyOutline, arrowBackOutline } from "ionicons/icons";
+import { logoFirebase, keyOutline, arrowBackOutline, closeOutline, menuOutline } from "ionicons/icons";
 
 import styles from "../css/enterotp.module.css";
 
 function PasswordOTP() {
   const [otp, setOTP] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const { email } = location.state || {};
   const navigate = useNavigate();
@@ -36,6 +37,12 @@ function PasswordOTP() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.enterotp_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -43,6 +50,17 @@ function PasswordOTP() {
           <Link to="/students/signup">Sign Up</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+      </div>
 
       <section className={styles.enterotp_home}>
         <div className={styles.enterotp_content}>

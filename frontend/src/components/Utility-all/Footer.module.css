@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap");
 
 footer {
   position: relative;
@@ -45,7 +44,7 @@ footer {
   margin: 15px 0;
   color: #e0e0e0;
   text-decoration: none;
-  font-family:'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .footer-item a:hover {
@@ -58,9 +57,10 @@ footer {
   color: #ccc;
 }
 
-.footer-office-address p{
-  font-family:'Courier New', Courier, monospace;
+.footer-office-address p {
+  font-family: "Courier New", Courier, monospace;
 }
+
 
 /* Line */
 .line {
@@ -97,5 +97,88 @@ footer {
   font-size: 14px;
   display: flex;
   justify-content: center;
-  font-family:'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px 10px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer h2 {
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+
+  .footer-items {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+
+  .footer-item {
+    width: 90%;
+  }
+
+  .footer-item a {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  .footer-item p,
+  .footer-office-address p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .line {
+    width: 70%;
+    margin: 15px 0;
+  }
+
+  .social-container {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .social-box img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .copyright {
+    font-size: 12px;
+    padding: 8px;
+    text-align: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer h2 {
+    font-size: 18px;
+  }
+
+  .footer-item a {
+    font-size: 13px;
+  }
+
+  .footer-item p,
+  .footer-office-address p {
+    font-size: 13px;
+  }
+
+  .social-box img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .line {
+    width: 90%;
+  }
 }

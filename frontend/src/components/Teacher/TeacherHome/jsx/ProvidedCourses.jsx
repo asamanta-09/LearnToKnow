@@ -51,7 +51,7 @@ const ProvidedCourses = () => {
             {online_courses?.length === 0 ? (
               <p>No course to display</p>
             ) : (
-              online_courses.map((course) => (
+              online_courses.map((course) => ( 
                 <div key={course._id} className={styles['course-card-item']} onClick={() => handleClick(course)}>
                   <CourseCard course={course} />
                 </div>

@@ -1,24 +1,20 @@
 import React, { useState } from "react";
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import {toast} from 'react-toastify';
 
 import { IonIcon } from "@ionic/react";
-import { mailOutline, lockClosedOutline, logoFirebase } from 'ionicons/icons';
+import { mailOutline, lockClosedOutline, logoFirebase, menuOutline, closeOutline } from 'ionicons/icons';
 
 import styles from "../css/LoginForm.module.css";
 
-import { toast } from 'react-toastify';
-import { useEffect } from 'react';
 
-function LoginPageTeacher() { 
+function LoginPageTeacher() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
-
-   useEffect(() => {
-    toast.success("Successfull");
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,25 +24,32 @@ function LoginPageTeacher() {
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', email);
+        toast.success("Logged In successfully");
         navigate('/teachers/home');
       } else {
         setError("Login failed. Please check your credentials.");
       }
-
     } catch (error) {
       console.error('Error sending login data:', error);
       setError("Invalid email or password. Please try again.");
     }
   };
 
-
   return (
-    <div>
+    <div className={styles.loginBody}>
+      {/* Header */}
       <header className={styles.login_header}>
         <Link to="#" className={styles.login_logo}>
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
+        {/* Navigation links for large screens */}
         <nav className={styles.login_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -55,38 +58,45 @@ function LoginPageTeacher() {
         </nav>
       </header>
 
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/teachers/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
+      </div>
+
+      {/* Main Content */}
       <section className={styles.login_home}>
         <div className={styles.login_content}>
-          <h3>Learning is a journey, not a destination</h3>
-          <p>“Knowledge is the seed, learning is the rain.With patience and curiosity, wisdom blooms.A mind open to learning is a garden that never withers.”</p>
+          <h3>Learning is a journey,<br /> not a destination</h3>
+          <p>“Knowledge is the seed, learning is the rain..."</p>
           <Link to="/teachers/signup">Get Started</Link>
         </div>
         <div className={styles.login_wrapper_login}>
           <h2>Teacher Login</h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.login_input_box}>
-              <span className={styles.login_icon}>
-                <IonIcon icon={mailOutline} />
-              </span>
-              <input type="email" id="email" value={email} required onChange={(e) => setEmail(e.target.value)} />
-              <label htmlFor="email">Enter your email</label>
+              <span className={styles.login_icon}><IonIcon icon={mailOutline} /></span>
+              <input type="email" value={email} required onChange={(e) => setEmail(e.target.value)} />
+              <label>Enter your email</label>
             </div>
             <div className={styles.login_input_box}>
-              <span className={styles.login_icon}>
-                <IonIcon icon={lockClosedOutline} />
-              </span>
-              <input type="password" id="password" value={password} required onChange={(e) => setPassword(e.target.value)} />
-              <label htmlFor="password">Enter your password</label>
+              <span className={styles.login_icon}><IonIcon icon={lockClosedOutline} /></span>
+              <input type="password" value={password} required onChange={(e) => setPassword(e.target.value)} />
+              <label>Enter your password</label>
             </div>
             <div className={styles.login_remember_forgot}>
-              <label> <input type="checkbox" /> Remember me </label>
-              <Link to="/teachers/forget-password">Forgot Password?</Link> 
+              <label><input type="checkbox" /> Remember me</label>
+              <Link to="/teachers/forget-password">Forgot Password?</Link>
             </div>
-            {/* Error message display */}
             {error && <p className={styles.login_error_message}>{error}</p>}
-            <button type="submit" className={styles.login_btn}> Login </button>
+            <button type="submit" className={styles.login_btn}>Login</button>
             <div className={styles.login_register_link}>
-              <p> Not a member? <Link to="/teachers/signup">Sign Up</Link> </p>
+              <p>Not a member? <Link to="/teachers/signup">Sign Up</Link></p>
             </div>
           </form>
         </div>

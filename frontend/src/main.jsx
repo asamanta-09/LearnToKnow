@@ -4,6 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Draggable from 'react-draggable';
 
 
 import App from './App.jsx';
@@ -78,6 +81,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <>
       <RouterProvider router={router} />
+      <Draggable>
+        <div style={{ position: 'fixed', top: 50, left: '50%', transform: 'translateX(-50%)', zIndex: 9999 }}>
+          <ToastContainer position="top-center" closeOnClick draggable={false} pauseOnHover autoClose={3000} />
+        </div>
+      </Draggable>
     </>
   </StrictMode>
 );

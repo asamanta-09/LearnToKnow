@@ -1,0 +1,10 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.body {
+  background-color: transparent;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  padding-top: 100px; 
+}

@@ -40,3 +40,30 @@
   max-width: 300px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) { 
+  .course-log-title {
+    margin-left: 8px;
+    width: 100%;
+  }
+  .course-log-title-h4 {
+    background: transparent;
+  }
+  .course-cards {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling on iOS */
+    scrollbar-width: none; /* hides scrollbar on Firefox */
+  }
+
+  .course-cards::-webkit-scrollbar {
+    display: none; /* hides scrollbar on Chrome, Safari */
+  }
+
+  .course-card-item {
+    flex: 0 0 auto; /* Prevent cards from shrinking */
+    width: 250px; /* Fixed width for consistent scroll */
+    max-width: none;
+  }
+}

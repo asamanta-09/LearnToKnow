@@ -72,9 +72,9 @@ const CourseForm = ({ onClose, onSubmit }) => {
     <>
       <div className={styles.modalOverlay}>
         <div className={styles.modalContent}>
-          <h3 className={styles.formTitlecreate}>Create a Course</h3>
           <button className={styles.closeButton} onClick={onClose}>×</button>
           <form onSubmit={handleSubmit} className={styles.formContainer}>
+          <h3 className={styles.formTitlecreate}>Create a Course</h3>
             <div className={styles.grid}>
               <div className={styles.inputGroup}>
                 <input name="course_title" value={formData.course_title} onChange={handleChange} placeholder=" " className={styles.floatingInput} required />

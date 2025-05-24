@@ -7,7 +7,7 @@ import {
   personOutline, mailOutline, callOutline, calendarOutline,
   accessibilityOutline, createOutline, briefcaseOutline,
   businessOutline, peopleOutline, schoolOutline, libraryOutline,
-  lockClosedOutline, logoFirebase
+  lockClosedOutline, logoFirebase, closeOutline, menuOutline
 } from "ionicons/icons";
 
 import styles from "../css/SignupForm.module.css";
@@ -15,6 +15,7 @@ import styles from "../css/SignupForm.module.css";
 function SignupForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [errors, setErrors] = useState({});
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -134,7 +135,7 @@ function SignupForm() {
       password
     };
 
-    axios.post('/student/generateOTP', { email: studentData.email ,name:studentData.name}, { withCredentials: true })
+    axios.post('/student/generateOTP', { email: studentData.email, name: studentData.name }, { withCredentials: true })
       .then((res) => {
         if (res.data?.success === true) {
           setFormData({
@@ -269,13 +270,31 @@ function SignupForm() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.signup_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
           <Link to="#">Contact Us</Link>
           <Link to="/students/login">Login</Link>
-        </nav>
+        </nav> 
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+      </div>
+
       <section className={styles.signup_home}>
         <div className={styles.signup_wrapper_login}>
           <h2>Student Registration</h2>

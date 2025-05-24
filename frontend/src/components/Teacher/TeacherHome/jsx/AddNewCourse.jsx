@@ -20,7 +20,7 @@ const AddNewCourse = () => {
   return (
     <>
       <div className={styles['addnew-title-h4']}>
-        <h4>Add New Course</h4>
+        <h4>Add New Course</h4><hr />
       </div>
       <div className={styles['add-card']} onClick={handleAddCourse}>
         <div className={styles['add-symbol']}>+</div>

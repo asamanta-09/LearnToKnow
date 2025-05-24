@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { IonIcon } from "@ionic/react";
-import { mailOutline, logoFirebase, arrowBackOutline} from 'ionicons/icons';
+import { mailOutline, logoFirebase, arrowBackOutline, closeOutline, menuOutline } from 'ionicons/icons';
 import styles from "../css/ForgetPassword.module.css";
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 function ForgetPassword() {
   const [email, setEmail] = useState("");
-  const navigate=useNavigate();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   const name = "Student";
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/student/generateOTP', { email,name }, { withCredentials: true });
+      await axios.post('/student/generateOTP', { email, name }, { withCredentials: true });
       navigate('/students/password-otp', { state: { email } });
     } catch (error) {
       console.error('Error sending login data:', error);
@@ -27,6 +28,10 @@ function ForgetPassword() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
         <nav className={styles.forgetpassword_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -34,6 +39,17 @@ function ForgetPassword() {
           <Link to="/students/signup">Sign Up</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+      </div>
 
       <section className={styles.forgetpassword_home}>
         <div className={styles.forgetpassword_content}>
@@ -54,13 +70,7 @@ function ForgetPassword() {
               <span className={styles.forgetpassword_icon}>
                 <IonIcon icon={mailOutline} />
               </span>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-              />
+              <input type="email" id="email" value={email} required onChange={(e) => setEmail(e.target.value)} />
               <label htmlFor="email">Enter your email</label>
             </div>
 

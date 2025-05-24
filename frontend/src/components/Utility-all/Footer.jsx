@@ -29,16 +29,16 @@ const Footer = () => {
           <div className={styles["social-container"]}>
             <div className={styles["social-box"]}>
               <a href="">
-              <img src="fb.png" alt="Facebook" title="Facebook" />
+              <img src="/fb.png" alt="Facebook" title="Facebook" />
               </a>
               <a href="">
-                <img src="twitter.png" alt="Twitter" title="Twitter" />
+                <img src="/twitter.png" alt="Twitter" title="Twitter" />
               </a>
               <a href="">
-                <img src="linkedin.png" alt="LinkedIn" title="LinkedIn" />
+                <img src="/linkedin.png" alt="LinkedIn" title="LinkedIn" />
               </a>
               <a href="https://www.instagram.com/bond_007_here/">
-                <img src="instagram.png" alt="Instagram" title="Instagram" />
+                <img src="/instagram.png" alt="Instagram" title="Instagram" />
               </a>
             </div>
           </div>

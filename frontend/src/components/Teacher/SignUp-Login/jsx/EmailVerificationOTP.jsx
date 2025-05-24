@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
 
 import { IonIcon } from "@ionic/react";
-import { logoFirebase, keyOutline, arrowBackOutline } from "ionicons/icons";
+import { logoFirebase, keyOutline, arrowBackOutline, menuOutline, closeOutline } from "ionicons/icons";
 
 import styles from "../css/enterotp.module.css";
 
 function EmailVerificationOTPTeacher() {
   const [otp, setOTP] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const { teacherData } = location.state || {};
   const navigate = useNavigate();
@@ -17,26 +18,26 @@ function EmailVerificationOTPTeacher() {
     e.preventDefault();
     const data = { email: teacherData.email, otp };
     axios.post('/teacher/verifyOTP', data, { withCredentials: true })
-    .then((response) => {
-      if (response.data.success === true) {
-        return axios.post('/teacher/signUp', teacherData, { withCredentials: true })
-      } else {
-        alert(response.data.message);
-        throw new Error("Invalid OTP");
-      }
-    })
-    .then((res) => {
-      if (res.data.success === true) {
-        alert(res.data.message);
-        navigate('/teachers/login');
-      } else {
-        alert(res.data.message);
-      }
-    })
-    .catch((error) => {
-      console.error('Error during verification/sign up:', error);
-    });
-  
+      .then((response) => {
+        if (response.data.success === true) {
+          return axios.post('/teacher/signUp', teacherData, { withCredentials: true })
+        } else {
+          toast.warn(response.data.message);
+          throw new Error("Invalid OTP");
+        }
+      })
+      .then((res) => {
+        if (res.data.success === true) {
+          toast.success(res.data.message);
+          navigate('/teachers/login');
+        } else {
+          toast(res.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error during verification/sign up:', error);
+      });
+
   };
 
 
@@ -47,6 +48,13 @@ function EmailVerificationOTPTeacher() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
+
         <nav className={styles.enterotp_nav}>
           <Link to="#">Home</Link>
           <Link to="#">About Us</Link>
@@ -54,6 +62,17 @@ function EmailVerificationOTPTeacher() {
           <Link to="/teachers/signup">Sign Up</Link>
         </nav>
       </header>
+
+      {/* Sidebar for small screens */}
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/teachers/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
+      </div>
 
       <section className={styles.enterotp_home}>
         <div className={styles.enterotp_content}>
@@ -68,7 +87,7 @@ function EmailVerificationOTPTeacher() {
 
         <div className={styles.enterotp_wrapper_login}>
           <h2>Email Verification</h2>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.enterotp_form} >
             <div className={styles.enterotp_input_box}>
               <span className={styles.enterotp_icon}>
                 <IonIcon icon={keyOutline} />

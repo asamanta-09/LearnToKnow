@@ -6,7 +6,7 @@ import styles from "../css/DonutChart.module.css";
 const DonutChart = () => {
   const [topics, setTopics] = useState([]);
   const [counts, setCounts] = useState([]);
-  const teacherEmail=localStorage.getItem('email');
+  const teacherEmail = localStorage.getItem('email');
 
   useEffect(() => {
     const fetchChartData = async () => {
@@ -44,8 +44,7 @@ const DonutChart = () => {
               align: "left",
               style: {
                 fontSize: "15px",
-                fontWeight: "bold",
-                color: "#333",
+                color: "#fff",
               },
             },
             plotOptions: {
@@ -53,11 +52,22 @@ const DonutChart = () => {
                 donut: {
                   labels: {
                     show: true,
+                    name: {
+                      show: true,
+                      fontSize: "12px",
+                      color: "#fff"
+                    },
+                    value: {
+                      show: true,
+                      fontSize: "12px",
+                      color: "#fff",
+                      formatter: val => `${val}%`
+                    },
                     total: {
                       show: true,
-                      showAlways: true,
-                      fontSize: "20px",
-                      color: "#f90000",
+                      label: "Total",
+                      fontSize: "14px",
+                      color: "#fff",
                     },
                   },
                 },
@@ -65,7 +75,43 @@ const DonutChart = () => {
             },
             dataLabels: {
               enabled: true,
+              style: {
+                fontSize: "7px",
+                colors: ["#fff"]
+              }
             },
+            legend: {
+              position: 'right',
+              fontSize: '12px',
+              labels: {
+                colors: '#fff',
+              },
+            },
+            responsive: [{
+              breakpoint: 768,
+              options: {
+                chart: {
+                  height: 300
+                },
+                plotOptions: {
+                  pie: {
+                    donut: {
+                      labels: {
+                        value: {
+                          fontSize: "10px"
+                        },
+                        total: {
+                          fontSize: "12px"
+                        }
+                      }
+                    }
+                  }
+                },
+                legend: {
+                  fontSize: '8px'
+                }
+              }
+            }]
           }}
         />
       ) : (

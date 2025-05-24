@@ -26,7 +26,7 @@ const ProfileDetails = () => {
     <div className={styles['hero-section']}>
       <div className={styles['photo-name']}>
         <div className={styles["profile-photo"]}>
-          <img className={styles["profile-image"]} src="/nisha.webp" alt="" />
+          <img className={styles["profile-image"]} src="/profile.png" alt="" />
         </div>
         <div className={styles["name-section"]}>{profile.name}</div><hr className={styles['hr-line']} />
       </div>

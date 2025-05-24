@@ -1,0 +1,81 @@
+/* About section */
+
+.about{
+  margin-top: 100px;
+}
+.aboutCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 75px 45px;
+  margin-right: 7rem;
+  margin-left: 7rem;
+  gap: 30px;
+  background-color: transparent;
+  flex-wrap: wrap;
+}
+
+.aboutContent {
+  flex: 1;
+  min-width: 300px;
+}
+
+.aboutusTitle {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: orange;
+  position: relative;
+}
+
+.aboutusTitle::after {
+  content: "";
+  position: absolute;
+  width: 6%;
+  height: 4px;
+  background-color: orange;
+  left: 0;
+  bottom: -8px;
+  border-radius: 2px;
+}
+
+.aboutusParagraph {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #fff;
+  padding-top: 2rem;
+  /* font-family: "Poppins", sans-serif; */
+}
+
+.aboutImage {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutImage img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  transition: transform 0.4s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .aboutCard {
+    flex-direction: column;
+    padding: 50px 20px;
+    margin-left: 1rem;
+    margin-right: 20px;
+  }
+
+  .aboutusTitle {
+    font-size: 28px;
+  }
+
+  .aboutusParagraph {
+    font-size: 16px;
+  }
+}
+/* end of about section */

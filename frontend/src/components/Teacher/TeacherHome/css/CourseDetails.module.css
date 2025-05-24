@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&display=swap");
 
 .container {
   max-width: 1200px;
@@ -7,7 +7,7 @@
 }
 
 .headingTitle h1 {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 2.5rem;
   color: #e28b20;
   text-align: center;
@@ -18,12 +18,12 @@
   border: 1px solid #e28b20;
 }
 
-h2, h4 {
-  font-family: 'Cinzel', serif;
+h2,
+h4 {
+  font-family: "Cinzel", serif;
   color: #fff;
   margin-bottom: 0.5rem;
 }
-
 
 .ul {
   list-style: none;
@@ -31,7 +31,7 @@ h2, h4 {
 }
 
 .ul li::before {
-  content: '•';
+  content: "•";
   color: #e28b20;
   margin-right: 5px;
 }
@@ -44,7 +44,8 @@ h2, h4 {
   justify-content: space-between;
 }
 
-.editBtn, .backBtn {
+.editBtn,
+.backBtn {
   margin-top: 50px;
   margin-left: 20px;
   width: 80%;
@@ -59,12 +60,13 @@ h2, h4 {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.backBtn{
+.backBtn {
   text-decoration: none;
   text-align: center;
 }
 
-.editBtn:hover, .backBtn:hover {
+.editBtn:hover,
+.backBtn:hover {
   transform: scale(1.07);
   background: transparent;
   border: 1px solid white;
@@ -143,7 +145,6 @@ section {
   border: 0;
 }
 
-
 /* Topics Covered */
 .topicsCovered {
   display: flex;
@@ -155,7 +156,7 @@ section {
 }
 
 .topicsText ul li::before {
-  content: '✓';
+  content: "✓";
   color: #e28b20;
 }
 
@@ -176,7 +177,8 @@ section {
   .courseIntro {
     flex-direction: column;
   }
-  .introText, .introImage {
+  .introText,
+  .introImage {
     flex: 100%;
   }
 }
@@ -190,7 +192,7 @@ section {
 
   /* Headings smaller and centered */
   .headingTitle h1 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 0.5rem;
   }
   .headingTitle hr {
@@ -254,12 +256,12 @@ section {
   }
 
   /* Reduce font sizes */
-  h2, h4 {
+  h2,
+  h4 {
     font-size: 1.2rem;
   }
-  p, li {
+  p,
+  li {
     font-size: 0.9rem;
   }
 }
-
-

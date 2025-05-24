@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap");
 
 .navbar-header {
   width: 100%;
@@ -12,6 +12,7 @@
   position: sticky;
   top: 0;
   z-index: 1;
+  border-radius: 8px;
 }
 
 .navbar-items {
@@ -26,7 +27,7 @@
   font-size: 1.7em;
   color: #fff;
   text-decoration: none;
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   margin-left: 70px;
   margin-bottom: 15px;
   font-weight: 600;
@@ -59,17 +60,16 @@
   gap: 10px;
 }
 
-
 .menu-items ul li:hover {
   color: #ff8c00;
 }
 
-.link{
-  color:white;
+.link {
+  color: white;
   text-decoration: none;
 }
 
-.link:hover{
+.link:hover {
   color: orange;
 }
 
@@ -94,7 +94,7 @@
 }
 
 .search-bar button {
-  background: linear-gradient(90deg,#e28b20,#ff7700db);
+  background: linear-gradient(90deg, #e28b20, #ff7700db);
   color: white;
   padding: 1px 6px;
   border-radius: 8px;
@@ -105,7 +105,7 @@
 }
 
 .search-bar button:hover {
-  background-color: #e07b00; 
+  background-color: #e07b00;
   transform: scale(1.1);
 }
 
@@ -195,4 +195,30 @@
   position: absolute;
   right: -1rem;
   top: 2.5rem;
+}
+
+@media (max-width: 768px) {
+  .navbar-header {
+    padding: 25px 0px;
+    height: 30px;
+    background: linear-gradient(to right, #ff8008, #ffc837);
+  }
+  .img-logo h2 {
+    font-size: 1.3em;
+    margin-left: 20px;
+  }
+  .search-bar{
+    display: none;
+  }
+  .message{
+    display: none;
+  }
+  .translate{
+    display: none;
+  }
+  .notification-profile .notification{
+    display: none;
+  }
+  .notification-count{display: none;}
+  .profile{margin-right: 20px;}
 }

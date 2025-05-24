@@ -40,7 +40,7 @@ const CourseDetailsPage = () => {
                 </div>
               </div>
               <div className={styles.buttonGroup}>
-                <button className={styles.editBtn}>Edit Course</button>
+                <button className={styles.editBtn}>Edit</button>
                 <Link to='/teachers/home' className={styles.backBtn} >Back</Link>
               </div>
             </div>

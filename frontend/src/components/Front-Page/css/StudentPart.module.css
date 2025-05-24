@@ -1,0 +1,76 @@
+/* Student section */
+.studentSection {
+  padding: 50px 150px;
+  background-color: transparent;
+  color: #fff;
+}
+
+.studentSection > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+/* Image box */
+.studentSection_Img img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Text content */
+.studentSectionText {
+  flex: 1;
+  max-width: 600px;
+}
+
+.studentSection_Title {
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ff9900;
+  font-family: "Cinzel", serif;
+}
+
+.studentSection_Paragraph {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* Button styling */
+.studentSection_button {
+  background-color: #ff9900;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.studentSection_button:hover {
+  background-color: #e08600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .studentSection > div {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .studentSectionText {
+    max-width: 100%;
+  }
+
+  .studentSection_Img img {
+    max-width: 300px;
+  }
+}
+/* end of student section */

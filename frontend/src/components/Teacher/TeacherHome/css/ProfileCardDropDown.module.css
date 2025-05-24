@@ -57,7 +57,7 @@
 
 .profile-menu-item:hover {
   transform: scale(1.01);
-  background: linear-gradient(90deg,#e28b20,#ff7700db);
+  background: linear-gradient(to right, #ff8008, #ffc837);
   border-radius: 10px;
   cursor: pointer;
 }

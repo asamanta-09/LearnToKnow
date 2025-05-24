@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
+import {toast} from 'react-toastify';
 
 import { IonIcon } from "@ionic/react";
 import { logoFirebase, keyOutline, arrowBackOutline } from "ionicons/icons";
@@ -18,9 +19,10 @@ function PasswordOTPTeacher() {
     axios.post('/teacher/verifyOTP', { email, otp }, { withCredentials: true })
       .then((response) => {
         if (response.data.success === true) {
+          toast.success("OTP verified");
           navigate('/teachers/reset-password', { state: { email } });
         } else {
-          alert(response.data.message);
+          toast.warn(response.data.message);
           throw new Error("Invalid OTP");
         }
       })

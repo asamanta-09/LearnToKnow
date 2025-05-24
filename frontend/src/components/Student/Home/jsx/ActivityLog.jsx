@@ -15,7 +15,7 @@ const ActivityLog = () => {
           </div>
         </a>
         <a href="/">
-          <div className={styles["activity-card"]}>
+          <div className={styles["activity-card"]}> 
             <img src="/ongoing-image.webp" alt="not found" />
             <div className={styles['activity-card-title']}>Ongoing Courses</div>
             <div className={styles["arrow"]}><FaArrowRight /></div>

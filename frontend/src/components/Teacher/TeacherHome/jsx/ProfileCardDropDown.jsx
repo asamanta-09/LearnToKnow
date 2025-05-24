@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../css/ProfileCardDropDown.module.css';
 import { IoIosArrowForward } from "react-icons/io";
+import {toast} from 'react-toastify';
 
 const ProfileCardDropDown = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const ProfileCardDropDown = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('email'); 
         navigate("/teachers/login");
+        toast.success("Logged Out Successfully");
       }
     }
   ];
@@ -25,7 +27,7 @@ const ProfileCardDropDown = () => {
   return (
     <div className={styles['profilecard-container-menu']}>
       <div className={styles["profile-image-dropdown"]}>
-        <img className={styles['image-dropdown']} src="/nisha.webp" alt="profile" />
+        <img className={styles['image-dropdown']} src="/profile.png" alt="profile" />
       </div>
       <hr className={styles["hr-underline-profile"]} />
       <div className={styles["profile-options-dropdown"]}>

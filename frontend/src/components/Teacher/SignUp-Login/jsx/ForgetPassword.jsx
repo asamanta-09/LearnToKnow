@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import { IonIcon } from "@ionic/react";
-import { mailOutline, logoFirebase, arrowBackOutline} from 'ionicons/icons';
+import { mailOutline, logoFirebase, arrowBackOutline } from 'ionicons/icons';
 import styles from "../css/ForgetPassword.module.css";
-import { Link ,useNavigate} from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import {toast} from 'react-toastify';
 
 function ForgetPasswordTeacher() {
   const [email, setEmail] = useState("");
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const name = "Teacher";
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/teacher/generateOTP', { email,name }, { withCredentials: true });
+      await axios.post('/teacher/generateOTP', { email, name }, { withCredentials: true });
+      toast.info("OTP sent to your email successfully");
       navigate('/teachers/password-otp', { state: { email } });
     } catch (error) {
       console.error('Error sending login data:', error);
@@ -58,10 +60,7 @@ function ForgetPasswordTeacher() {
               <label htmlFor="email">Enter your email</label>
             </div>
 
-            <button type="submit" className={styles.forgetpassword_btn}>
-              Send OTP
-            </button>
-
+            <button type="submit" className={styles.forgetpassword_btn}> Send OTP </button>
             <div className={styles.forgetpassword_register_link}>
               <p>
                 <IonIcon icon={arrowBackOutline} style={{ marginRight: "6px", verticalAlign: "middle" }} />
