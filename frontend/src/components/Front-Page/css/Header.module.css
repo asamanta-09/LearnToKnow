@@ -1,4 +1,3 @@
-/* Header Navigation */
 .home_header {
   position: fixed;
   top: 0;
@@ -20,7 +19,8 @@
 }
 
 .home_menu_icon {
-  display: none; /* use media queries to show on mobile if needed */
+  display: none;
+  cursor: pointer;
 }
 
 /* Navbar Links */
@@ -53,4 +53,52 @@
 
 .home_nav a:hover::after {
   transform: scaleX(1);
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100vh;
+  background-color: #111;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+  transition: right 0.3s ease;
+  z-index: 999;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.sidebar .close_btn {
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.sidebar.active {
+  right: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .home_header {
+    padding: 15px 30px;
+  }
+
+  .home_menu_icon {
+    display: block;
+  }
+
+  .home_nav {
+    display: none;
+  }
 }

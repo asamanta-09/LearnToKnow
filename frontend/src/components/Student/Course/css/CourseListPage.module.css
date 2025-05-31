@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap");
 
 .course-list-page {
   display: flex;
 }
 
-.course-list-page::before{
+.course-list-page::before {
   content: "";
   position: absolute;
   top: 0;
@@ -14,20 +14,20 @@
   background: url("img11.webp") no-repeat center center/cover;
   filter: blur(2px);
   z-index: -1;
-} 
+}
 
 .profile-info {
-  padding-top: 50px;
+  padding-top: 100px;
   height: 94vh;
   width: 25vw;
-  background:transparent;
+  background: transparent;
 }
 
 .details-section {
   height: 94vh;
   width: 75vw;
   overflow-y: scroll;
-  background:transparent;
+  background: transparent;
 }
 
 .content {
@@ -37,12 +37,12 @@
   flex-wrap: wrap;
 }
 
-.heading{
+.heading {
   text-align: center;
   margin: 40px;
 }
-.heading h3{
-  font-family: 'Cinzel', serif;
+.heading h3 {
+  font-family: "Cinzel", serif;
 }
 
 .details-section {
@@ -58,14 +58,16 @@
   }
 }
 
-
 @media (max-width: 768px) {
-  .profile-info{
+  .profile-info {
     display: none;
   }
-  .details-section{
+  .details-section {
     width: 100%;
     overflow-y: scroll;
     scrollbar-width: none;
+  }
+  .content {
+    margin-left: 2.3rem;
   }
 }

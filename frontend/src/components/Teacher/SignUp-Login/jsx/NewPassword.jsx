@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import styles from "../css/NewPassword.module.css";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import {toast} from 'react-toastify';
-
+import { useState } from "react";
+import { toast } from 'react-toastify';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import styles from "../css/NewPassword.module.css";
 import { IonIcon } from "@ionic/react";
 import { lockClosedOutline, logoFirebase, menuOutline, closeOutline } from "ionicons/icons";
 
@@ -53,9 +52,10 @@ function NewPasswordTeacher() {
 
 
         <nav className={styles.newpassword_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/teachers/signup">Sign Up</Link>
         </nav>
       </header>
@@ -65,9 +65,10 @@ function NewPasswordTeacher() {
         <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
           <IonIcon icon={closeOutline} />
         </div>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Goal</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
         <Link to="/teachers/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
       </div>
 

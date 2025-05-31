@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
-
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import styles from "../css/enterotp.module.css";
 import { IonIcon } from "@ionic/react";
 import { logoFirebase, keyOutline, arrowBackOutline } from "ionicons/icons";
 
-import styles from "../css/enterotp.module.css";
 
 function EmailVerificationOTP() {
   const [otp, setOTP] = useState("");
@@ -17,26 +16,26 @@ function EmailVerificationOTP() {
     e.preventDefault();
     const data = { email: studentData.email, otp };
     axios.post('/student/verifyOTP', data, { withCredentials: true })
-    .then((response) => {
-      if (response.data.success === true) {
-        return axios.post('/student/signUp', studentData, { withCredentials: true })
-      } else {
-        alert(response.data.message);
-        throw new Error("Invalid OTP");
-      }
-    })
-    .then((res) => {
-      if (res.data.success === true) {
-        alert(res.data.message);
-        navigate('/students/login');
-      } else {
-        alert(res.data.message);
-      }
-    })
-    .catch((error) => {
-      console.error('Error during verification/sign up:', error);
-    });
-  
+      .then((response) => {
+        if (response.data.success === true) {
+          return axios.post('/student/signUp', studentData, { withCredentials: true })
+        } else {
+          alert(response.data.message);
+          throw new Error("Invalid OTP");
+        }
+      })
+      .then((res) => {
+        if (res.data.success === true) {
+          alert(res.data.message);
+          navigate('/students/login');
+        } else {
+          alert(res.data.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error during verification/sign up:', error);
+      });
+
   };
 
 
@@ -47,21 +46,38 @@ function EmailVerificationOTP() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.enterotp_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
-          <Link to="/students/signup">Sign Up</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
+          <Link to="/students/login">Login</Link>
         </nav>
       </header>
+
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Gola</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
+      </div>
 
       <section className={styles.enterotp_home}>
         <div className={styles.enterotp_content}>
           <h3>Learning is a journey, not a destination</h3>
           <p>
             “Knowledge is the seed, learning is the rain.
-            With patience and curiosity, wisdom blooms.
-            A mind open to learning is a garden that never withers.”
+             With patience and curiosity, wisdom blooms.
+             A mind open to learning is a garden that never withers.”
           </p>
           <Link to="#">Get Started</Link>
         </div>

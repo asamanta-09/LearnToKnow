@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import styles from '../css/CourseForm.module.css';
 import axios from 'axios';
+import { useState } from 'react';
+import styles from '../css/CourseForm.module.css';
 
 
 const CourseForm = ({ onClose, onSubmit }) => {

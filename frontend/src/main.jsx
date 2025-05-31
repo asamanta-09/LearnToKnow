@@ -10,9 +10,6 @@ import Draggable from 'react-draggable';
 
 
 import App from './App.jsx';
-import Home from './Home.jsx';
-import ProtectedRoute from './ProtectedRoute.jsx';
-import ProtectedRouteTeacher from './ProtectedRouteTeacher.jsx';
 
 // === Student Components ===
 import SignupForm from './components/Student/SignUp-Login/jsx/SignUpForm.jsx';
@@ -24,6 +21,8 @@ import NewPassword from './components/Student/SignUp-Login/jsx/NewPassword.jsx';
 import StudentHome from './components/Student/Home/jsx/StudentHome.jsx';
 import CourseListPage from './components/Student/Course/jsx/CourseListPage.jsx';
 import CourseDetailsPage from './components/Student/CourseDetails/CourseDetailsPage.jsx';
+import ProtectedRouteStudent from './components/Student/SignUp-Login/jsx/ProtectedRouteStudent.jsx';
+
 
 // === Teacher Components ===
 import LoginPageTeacher from './components/Teacher/SignUp-Login/jsx/LoginForm.jsx';
@@ -35,12 +34,27 @@ import NewPasswordTeacher from './components/Teacher/SignUp-Login/jsx/NewPasswor
 import TeacherHome from './components/Teacher/TeacherHome/jsx/TeacherHome.jsx';
 import CourseDetails from './components/Teacher/TeacherHome/jsx/CourseDetails.jsx';
 import CourseForm from './components/Teacher/TeacherHome/jsx/CourseForm.jsx';
+import ProtectedRouteTeacher from './components/Teacher/SignUp-Login/jsx/ProtectedRouteTeacher.jsx';
+
+//===Home page===
+import HomePage from './components/Front-Page/jsx/HomePage.jsx';
+import AboutUsPage from './components/Front-Page/jsx/AboutUs.jsx';
+import WhyUsPage from './components/Front-Page/jsx/WhyUs.jsx';
+import OurGoalPage from './components/Front-Page/jsx/OurGoal.jsx';
+import ContactUsPage from './components/Front-Page/jsx/Contact.jsx';
+
+//===Admin Components===
+import AdminLogin from './components/Admin/jsx/AdminLogin.jsx';
+import AdminHome from './components/Admin/jsx/AdminHome.jsx';
+import ProtectedRouteAdmin from './components/Admin/jsx/ProtectedRouteAdmin.jsx';
+
+
 
 // === Grouped Student Routes ===
 const studentRoutes = [
-  { path: "/students/home", element: <ProtectedRoute><StudentHome /></ProtectedRoute> },
-  { path: "/students/courses", element: <ProtectedRoute><CourseListPage /></ProtectedRoute> },
-  { path: "/students/course-details", element: <ProtectedRoute><CourseDetailsPage /></ProtectedRoute> },
+  { path: "/students/home", element: <ProtectedRouteStudent><StudentHome /></ProtectedRouteStudent> },
+  { path: "/students/courses", element: <ProtectedRouteStudent><CourseListPage /></ProtectedRouteStudent> },
+  { path: "/students/course-details", element: <ProtectedRouteStudent><CourseDetailsPage /></ProtectedRouteStudent> },
   { path: "/students/signup", element: <SignupForm /> },
   { path: "/students/login", element: <LoginPage /> },
   { path: "/students/forget-password", element: <ForgetPassword /> },
@@ -62,6 +76,21 @@ const teacherRoutes = [
   { path: "/teachers/add-course", element: <ProtectedRouteTeacher><CourseForm /></ProtectedRouteTeacher> },
 ];
 
+// ===Nav menus ===
+const navMenus = [
+  { path: "/home", element: <HomePage /> },
+  { path: "/about-us", element: <AboutUsPage /> },
+  { path: "/why-us", element: <WhyUsPage /> },
+  { path: "/our-goal", element: <OurGoalPage /> },
+  { path: "/contact-us", element: <ContactUsPage /> },
+]
+
+//===Admin routes===
+const adminRoutes=[
+  {path:"/admins/login",element: <AdminLogin />},
+  {path:"/admins/home",element: <ProtectedRouteAdmin><AdminHome /></ProtectedRouteAdmin>},
+]
+
 
 // === Final Router Setup ===
 const router = createBrowserRouter([
@@ -69,9 +98,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { path: "/", element: <Home /> },
+      { path: "/", element: <HomePage /> },
       ...studentRoutes,
       ...teacherRoutes,
+      ...navMenus,
+      ...adminRoutes,
     ],
   },
 ]);

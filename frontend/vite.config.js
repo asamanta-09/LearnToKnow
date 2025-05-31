@@ -1,29 +1,39 @@
 // vite.config.js
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+  appType: "spa",
   server: {
+    host: true, // 👈 Add this line to allow external access (e.g., from your phone)
+    port: 5173, // Optional: explicitly set port (default is 5173)
     proxy: {
-      // only match paths that start with /student/
-      '/student/': {
-        target: 'http://localhost:3000',
-        changeOrigin: true,
-        // if your backend expects e.g. /login instead of /student/login:
-        // rewrite: (path) => path.replace(/^\/student/, '')
-      },
-      '/course/': {
-        target: 'http://localhost:3000',
+      "/student/": {
+        target: "http://localhost:3000",
         changeOrigin: true,
       },
-      '/teacher/': {
-        target: 'http://localhost:3000',
+      "/course/": {
+        target: "http://localhost:3000",
         changeOrigin: true,
-      }
+      },
+      "/teacher/": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/notes/": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/playlist/": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+      "/admin/": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
     },
-    // still keep the SPA fallback so that any other unknown paths
-    // serve index.html and let React Router handle them
-    historyApiFallback: true,
+    // historyApiFallback: true,
   },
-  plugins: [ react() ],
-})
+  plugins: [react()],
+});

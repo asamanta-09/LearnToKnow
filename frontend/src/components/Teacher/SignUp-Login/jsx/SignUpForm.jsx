@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { IonIcon } from "@ionic/react";
 import {
   personOutline, mailOutline, callOutline, calendarOutline,
   accessibilityOutline, createOutline, briefcaseOutline,
   businessOutline, peopleOutline, schoolOutline, libraryOutline,
-  lockClosedOutline, logoFirebase, closeOutline,menuOutline
+  lockClosedOutline, logoFirebase, closeOutline, menuOutline
 } from "ionicons/icons";
 
 import styles from "../css/SignupForm.module.css";
@@ -277,10 +277,11 @@ function SignupFormTeacher() {
         </div>
 
         <nav className={styles.signup_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
-          <Link to="/teachers/login">Login</Link>
+          <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+          <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+          <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Gola</Link>
+          <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+          <Link to="/teachers/login" onClick={() => setSidebarOpen(false)}>Login</Link>
         </nav>
       </header>
 

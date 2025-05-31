@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom'
 
 import { IonIcon } from "@ionic/react";
 import {
@@ -13,6 +14,7 @@ import {
 import styles from "../css/SignupForm.module.css";
 
 function SignupForm() {
+  const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [errors, setErrors] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -119,6 +121,7 @@ function SignupForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { name, email, phone_no, dob, gender, about, profession, institution, course_or_job_role, qualification, qualifying_institution, password } = formData;
 
     const studentData = {
@@ -144,15 +147,16 @@ function SignupForm() {
             qualification: "", qualifying_institution: "", password: "", confirm_password: ""
           });
 
-          alert(res.data?.message);
+          toast.success(res.data?.message);
           navigate('/students/email-verification', { state: { studentData } });
         } else {
-          alert(res.data?.message);
+          toast.error(res.data?.message);
         }
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error in verification:', error);
-        alert(res.data.message);
+        toast.error(res.data.message);
       });
   };
 
@@ -258,7 +262,7 @@ function SignupForm() {
       </div>
       <div className={styles.signup_btn_group}>
         <button type="button" className={styles.signup_btn} onClick={prevStep}>Back</button>
-        <button type="submit" className={styles.signup_btn}>Submit</button>
+        <button type="submit" className={styles.signup_btn} disabled={loading}>{loading ? 'Sending...' : 'Verify'}</button>
       </div>
     </>
   ];
@@ -277,11 +281,12 @@ function SignupForm() {
         </div>
 
         <nav className={styles.signup_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/students/login">Login</Link>
-        </nav> 
+        </nav>
       </header>
 
       {/* Sidebar for small screens */}
@@ -289,9 +294,10 @@ function SignupForm() {
         <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
           <IonIcon icon={closeOutline} />
         </div>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Gola</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
         <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
       </div>
 

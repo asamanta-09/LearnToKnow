@@ -18,7 +18,6 @@ function LoginPage() {
     e.preventDefault();
     try {
       const response = await axios.post('/student/login', { email, password }, { withCredentials: true });
-
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', email);
@@ -48,9 +47,10 @@ function LoginPage() {
         </div>
 
         <nav className={styles.login_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/students/signup">Sign Up</Link>
         </nav>
       </header>
@@ -60,10 +60,11 @@ function LoginPage() {
         <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
           <IonIcon icon={closeOutline} />
         </div>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
-        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Goal</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
       </div>
 
       <section className={styles.login_home}>

@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+
 const Teacher = require("../models/teacher");
 const { sendMail } = require("./mail");
 
@@ -253,10 +254,13 @@ exports.getProfileInfo = async (req, res) => {
   }
 };
 
-//getTeacherInfo
-exports.getTeacherInfo = async (req, res) => {
+//getTeacherInfoByEmail
+exports.getTeacherInfoByEmail = async (req, res) => {
   try {
-    const { email } = req.params;
+    const { email } = req.query;  // get email from query param now
+    if (!email) {
+      return res.status(400).json({ message: "Email query parameter is required" });
+    }
     const teacher = await Teacher.findOne({ email });
     if (!teacher) {
       return res.status(404).json({ message: "Teacher not found" });
@@ -267,3 +271,4 @@ exports.getTeacherInfo = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+

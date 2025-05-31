@@ -1,11 +1,10 @@
-import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
-
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import styles from "../css/enterotp.module.css";
 import { IonIcon } from "@ionic/react";
 import { logoFirebase, keyOutline, arrowBackOutline, closeOutline, menuOutline } from "ionicons/icons";
 
-import styles from "../css/enterotp.module.css";
 
 function PasswordOTP() {
   const [otp, setOTP] = useState("");
@@ -44,22 +43,24 @@ function PasswordOTP() {
         </div>
 
         <nav className={styles.enterotp_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/students/signup">Sign Up</Link>
         </nav>
-      </header>
+      </header> 
 
       {/* Sidebar for small screens */}
       <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
         <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
           <IonIcon icon={closeOutline} />
         </div>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
-        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Goal</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
       </div>
 
       <section className={styles.enterotp_home}>

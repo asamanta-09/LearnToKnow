@@ -76,10 +76,6 @@ exports.getOfflineCourses = async (req, res) => {
   }
 };
 
-//get all the notes - by students(unimplemented)
-exports.getNotes = async (req, res) => {};
-
-
 // In the teacher home - provided online courses
 exports.getOnlineCoursesByTeacher = async (req, res) => {
   const email = req.body.email;

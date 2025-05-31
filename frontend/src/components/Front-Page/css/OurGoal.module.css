@@ -7,10 +7,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 75px 45px;
-  margin-right: 7rem;
-  margin-left: 7rem;
-  gap: 30px;
+  padding: 80px 10%;
+  gap: 50px;
   background-color: transparent;
   flex-wrap: wrap;
 }
@@ -21,11 +19,12 @@
 }
 
 .ourgoalTitle {
-  font-size: 36px;
+  font-size: 2.5em;
   font-weight: 700;
   margin-bottom: 20px;
   color: orange;
   position: relative;
+  text-align: left;
 }
 
 .ourgoalTitle::after {
@@ -44,7 +43,7 @@
   line-height: 1.8;
   color: #fff;
   padding-top: 2rem;
-  /* font-family: "Poppins", sans-serif; */
+  text-align: left;
 }
 
 .ourgoalImage {
@@ -59,23 +58,78 @@
   height: auto;
   border-radius: 12px;
   transition: transform 0.4s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* Responsive image - mobile only */
+.responsiveImage {
+  display: none;
+}
+
+.responsiveImage img {
+  max-width: 300px;
+  width: 100%;
+  border-radius: 12px;
+  margin: 20px auto;
+  display: block;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive styles */
+@media (max-width: 1024px) {
   .ourgoalCard {
-    flex-direction: column;
-    padding: 50px 20px;
-    margin-left: 1rem;
-    margin-right: 20px;
+    padding: 60px 5%;
   }
 
   .ourgoalTitle {
-    font-size: 28px;
+    font-size: 2em;
   }
 
   .ourgoalParagraph {
     font-size: 16px;
+  }
+
+  .ourgoalImage img {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ourgoalCard {
+    flex-direction: column;
+    padding: 50px 20px;
+    margin: 0 1rem;
+  }
+
+  .ourgoalTitle {
+    font-size: 1.8em;
+  }
+
+  .ourgoalParagraph {
+    font-size: 15px;
+  }
+
+  .ourgoalImage {
+    display: none;
+  }
+
+  .responsiveImage {
+    display: block;
+  }
+}
+
+@media (max-width: 480px) {
+  .ourgoalTitle {
+    font-size: 1.5em;
+    margin-bottom: 3rem;
+  }
+
+  .ourgoalParagraph {
+    font-size: 14px;
+  }
+
+  .responsiveImage img {
+    max-width: 250px;
   }
 }
 /* end of our goal section */

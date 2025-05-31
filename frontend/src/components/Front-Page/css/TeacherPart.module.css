@@ -1,6 +1,6 @@
 /* Teacher section */
 .teacherSection {
-  padding: 80px 130px;
+  padding: 80px 10%;
   background-color: transparent;
   color: #fff;
 }
@@ -13,7 +13,7 @@
   flex-wrap: wrap;
 }
 
-/* Image box */
+/* Default image box (hidden on small screens) */
 .teacherSection_Img img {
   width: 100%;
   max-width: 400px;
@@ -28,7 +28,7 @@
 }
 
 .teacherSection_Title {
-  font-size: 2em;
+  font-size: 2.5em;
   font-weight: 700;
   margin-bottom: 20px;
   color: #ff9900;
@@ -59,7 +59,30 @@
   background-color: #e08600;
 }
 
+/* Hide responsive image by default */
+.responsiveImage {
+  display: none;
+}
+
 /* Responsive design */
+@media (max-width: 1024px) {
+  .teacherSection {
+    padding: 60px 5%;
+  }
+
+  .teacherSection_Title {
+    font-size: 2em;
+  }
+
+  .teacherSection_Paragraph {
+    font-size: 1em;
+  }
+
+  .teacherSection_Img img {
+    max-width: 350px;
+  }
+}
+
 @media (max-width: 768px) {
   .teacherSection > div {
     flex-direction: column;
@@ -70,9 +93,60 @@
     max-width: 100%;
   }
 
-  .teacherSection_Img img {
+  .teacherSection_Img {
+    display: none;
+  }
+
+  .responsiveImage {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .responsiveImage img {
     max-width: 300px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+  }
+
+  .teacherSection_Title {
+    font-size: 1.8em;
+  }
+
+  .teacherSection_Paragraph {
+    font-size: 0.95em;
+  }
+
+  .teacherSection_button {
+    padding: 10px 20px;
+    font-size: 0.95em;
   }
 }
-/* end of teacher section */ 
 
+@media (max-width: 480px) {
+  .teacherSection {
+    padding: 30px 20px;
+  }
+
+  .teacherSection_Title {
+    font-size: 1.5em;
+    margin-bottom: 3rem;
+  }
+
+  .teacherSection_Paragraph {
+    font-size: 0.9em;
+    text-align: left;
+    padding: 25px;
+  }
+
+  .teacherSection_button {
+    padding: 10px 18px;
+    font-size: 0.9em;
+  }
+
+  .responsiveImage img {
+    max-width: 200px;
+  }
+}
+/* end of teacher section */

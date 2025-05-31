@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { IonIcon } from "@ionic/react";
-import { logoFirebase, keyOutline, arrowBackOutline } from "ionicons/icons";
+import { logoFirebase, keyOutline, arrowBackOutline ,closeOutline, menuOutline} from "ionicons/icons";
 
 import styles from "../css/enterotp.module.css";
 
 function PasswordOTPTeacher() {
   const [otp, setOTP] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const { email } = location.state || {};
   const navigate = useNavigate();
@@ -38,13 +39,30 @@ function PasswordOTPTeacher() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.enterotp_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/teachers/signup">Sign Up</Link>
         </nav>
       </header>
+
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Goal</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
+      </div>
 
       <section className={styles.enterotp_home}>
         <div className={styles.enterotp_content}>

@@ -11,7 +11,7 @@ body {
 
 .signup_header {
   position: fixed;
-  top: 0;
+  top: 15px;
   left: 0;
   width: 100%;
   padding: 5px 100px;
@@ -19,8 +19,8 @@ body {
   justify-content: space-between;
   align-items: center;
   z-index: 1;
-  /* background: linear-gradient(to right, #ff9900, #ff6600); */
   min-height: 2px;
+  background: transparent;
 }
 
 .signup_header .signup_logo {
@@ -83,7 +83,7 @@ body {
 .signup_wrapper_login {
   width: 400px;
   background: rgba(0, 0, 0, 0.6);
-  padding: 40px;
+  padding: 15px;
   border-radius: 20px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
   margin-top: 80px;

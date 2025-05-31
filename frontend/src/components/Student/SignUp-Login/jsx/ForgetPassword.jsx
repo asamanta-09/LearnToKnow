@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import axios from 'axios'
+import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import styles from "../css/ForgetPassword.module.css";
+
 import { IonIcon } from "@ionic/react";
 import { mailOutline, logoFirebase, arrowBackOutline, closeOutline, menuOutline } from 'ionicons/icons';
-import styles from "../css/ForgetPassword.module.css";
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios'
 
 function ForgetPassword() {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -13,11 +15,15 @@ function ForgetPassword() {
   const name = "Student";
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post('/student/generateOTP', { email, name }, { withCredentials: true });
       navigate('/students/password-otp', { state: { email } });
     } catch (error) {
       console.error('Error sending login data:', error);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
@@ -33,9 +39,10 @@ function ForgetPassword() {
           <IonIcon icon={menuOutline} />
         </div>
         <nav className={styles.forgetpassword_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/students/signup">Sign Up</Link>
         </nav>
       </header>
@@ -45,10 +52,11 @@ function ForgetPassword() {
         <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
           <IonIcon icon={closeOutline} />
         </div>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Home</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>About Us</Link>
-        <Link to="#" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
-        <Link to="/students/login" onClick={() => setSidebarOpen(false)}>Login</Link>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our Gola</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/students/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
       </div>
 
       <section className={styles.forgetpassword_home}>
@@ -74,9 +82,9 @@ function ForgetPassword() {
               <label htmlFor="email">Enter your email</label>
             </div>
 
-            <button type="submit" className={styles.forgetpassword_btn}>
-              Send OTP
-            </button>
+            <button type="submit" className={styles.forgetpassword_btn} disabled={loading}>
+              {loading ? 'Sending...' : 'Send OTP'}
+            </button> 
 
             <div className={styles.forgetpassword_register_link}>
               <p>

@@ -1,22 +1,26 @@
-import React, { useState } from "react";
-import { IonIcon } from "@ionic/react";
-import { mailOutline, logoFirebase, arrowBackOutline } from 'ionicons/icons';
-import styles from "../css/ForgetPassword.module.css";
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import {toast} from 'react-toastify';
+import { useState } from "react";
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
+import styles from "../css/ForgetPassword.module.css";
+import { IonIcon } from "@ionic/react";
+import { mailOutline, logoFirebase, arrowBackOutline, menuOutline, closeOutline } from 'ionicons/icons';
 
 function ForgetPasswordTeacher() {
+  const [sending, setSending] = useState(false);
   const [email, setEmail] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
 
   const name = "Teacher";
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setSending(true);
       await axios.post('/teacher/generateOTP', { email, name }, { withCredentials: true });
       toast.info("OTP sent to your email successfully");
       navigate('/teachers/password-otp', { state: { email } });
+      setSending(false)
     } catch (error) {
       console.error('Error sending login data:', error);
     }
@@ -29,13 +33,31 @@ function ForgetPasswordTeacher() {
           <IonIcon icon={logoFirebase} />
           LearnToKnow
         </Link>
+
+        {/* Hamburger Icon */}
+        <div className={styles.login_menu_icon} onClick={() => setSidebarOpen(true)}>
+          <IonIcon icon={menuOutline} />
+        </div>
+
         <nav className={styles.forgetpassword_nav}>
-          <Link to="#">Home</Link>
-          <Link to="#">About Us</Link>
-          <Link to="#">Contact Us</Link>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
           <Link to="/teachers/signup">Sign Up</Link>
         </nav>
       </header>
+
+      <div className={`${styles.sidebar} ${sidebarOpen ? styles.active : ''}`}>
+        <div className={styles.close_btn} onClick={() => setSidebarOpen(false)}>
+          <IonIcon icon={closeOutline} />
+        </div>
+        <Link to="/home" onClick={() => setSidebarOpen(false)}>Home</Link>
+        <Link to="/about-us" onClick={() => setSidebarOpen(false)}>About Us</Link>
+        <Link to="/our-goal" onClick={() => setSidebarOpen(false)}>Our goal</Link>
+        <Link to="/contact-us" onClick={() => setSidebarOpen(false)}>Contact Us</Link>
+        <Link to="/teachers/signup" onClick={() => setSidebarOpen(false)}>Sign Up</Link>
+      </div>
 
       <section className={styles.forgetpassword_home}>
         <div className={styles.forgetpassword_content}>
@@ -59,8 +81,9 @@ function ForgetPasswordTeacher() {
               <input type="email" id="email" value={email} required onChange={(e) => setEmail(e.target.value)} />
               <label htmlFor="email">Enter your email</label>
             </div>
-
-            <button type="submit" className={styles.forgetpassword_btn}> Send OTP </button>
+            <button type="submit" className={styles.forgetpassword_btn} disabled={sending}>
+              {sending ? 'Sending...' : 'Send OTP'}
+            </button>
             <div className={styles.forgetpassword_register_link}>
               <p>
                 <IonIcon icon={arrowBackOutline} style={{ marginRight: "6px", verticalAlign: "middle" }} />

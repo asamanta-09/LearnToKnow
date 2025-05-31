@@ -1,6 +1,5 @@
 import Navbar from './Navbar';
 import { useLocation ,Link } from 'react-router-dom';
-
 import styles from '../css/CourseDetails.module.css';
 
 const CourseDetailsPage = () => {

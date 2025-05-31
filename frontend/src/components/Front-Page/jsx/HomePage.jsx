@@ -6,9 +6,10 @@ import { AboutUs } from './AboutUs'
 import { WhyUs } from './WhyUs'
 import { OurGoal } from './OurGoal'
 import Testmonial from './Testmonial'
-import Contact from './Contact'
+import {Contact} from './Contact'
 import Footer from '../../Utility-all/Footer'
 import styles from '../css/HomePage.module.css'
+import Review from './Review'
 
 
 const HomePage = () => {
@@ -22,7 +23,8 @@ const HomePage = () => {
       <WhyUs />
       <OurGoal />
       <Testmonial />
-      <Contact /><hr />
+      <Contact />
+      <Review />
       <Footer />
     </div>
   )

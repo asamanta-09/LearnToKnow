@@ -281,7 +281,12 @@ section {
   }
 
   .instructorInfo {
-    text-align: center;
+    text-align: left;
+  }
+  .instructorPhoto {
+    margin-left: 22%;
+    height: 150px;
+    width: auto;
   }
 }
 

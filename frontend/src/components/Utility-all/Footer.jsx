@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
       </div>
       <div className={styles["copyright"]}>
-        Copyright &copy; 2024. All Rights Reserved by LearnToKnow
+        Copyright &copy; 2025. All Rights Reserved by LearnToKnow
       </div>
     </footer>
   )

@@ -12,6 +12,7 @@ const StudentHome = () => {
   const [online_courses, setOnline_courses] = useState([]);
   const [offline_courses, setOffline_courses] = useState([]);
   const [notes, setNotes] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
 
   const groupCoursesByTopic = (courses) => {
     return courses.reduce((acc, course) => {
@@ -29,7 +30,7 @@ const StudentHome = () => {
   useEffect(() => {
     axios.get('/course/getOnlineCourses')
       .then((response) => {
-        const course=groupCoursesByTopic(response.data.course);
+        const course = groupCoursesByTopic(response.data.course);
         setOnline_courses(course);
       })
       .catch((err) => {
@@ -40,26 +41,36 @@ const StudentHome = () => {
   useEffect(() => {
     axios.get('/course/getOfflineCourses')
       .then((response) => {
-        const course=groupCoursesByTopic(response.data.course);
+        const course = groupCoursesByTopic(response.data.course);
         setOffline_courses(course);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  
 
-  // useEffect(() => {
-  //   axios.get('/student-home-notes')
-  //     .then((response) => {
-  //       setNotes(response.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     })
-  // }, [])
 
-  return ( 
+  useEffect(() => {
+    axios.get('/notes/view')
+      .then((response) => {
+        setNotes(response.data?.notes || []);
+      })
+      .catch((err) => {
+        console.error("Error fetching notes:", err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('/playlist/view')
+      .then((response) => {
+        setPlaylists(response.data?.playlist || []);
+      })
+      .catch((err) => {
+        console.error("Error fetching playlists:", err);
+      });
+  }, []);
+
+  return (
     <>
       <Navbar />
       <div className={styles["student-home-content"]}>
@@ -69,7 +80,7 @@ const StudentHome = () => {
         <div className={styles["details-section"]}>
           <div className={styles["content"]}>
             <ActivityLog /><br /><br />
-            <CourseLog online_courses={online_courses} offline_courses={offline_courses} notes={notes} />
+            <CourseLog online_courses={online_courses} offline_courses={offline_courses} notes={notes} playlists={playlists} />
           </div>
           <div className={styles["footer-body"]}>
             <br /><hr /><Footer />

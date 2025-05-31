@@ -175,13 +175,16 @@
   border: none;
   outline: none;
   border-radius: 40px;
-  background: linear-gradient(90deg, #1e0b04, #ff7700db);
+  background: linear-gradient(90deg, #e28b20, #ff7700db);
   box-shadow: 0 8px 10px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   font-size: 1.4em;
   color: #fff;
   font-family: "Courier New", Courier, monospace;
   font-weight: 600;
+}
+.enterotp_btn:hover{
+  transform: scale(1.01);
 }
 
 .enterotp_wrapper_login .enterotp_register_link {
@@ -269,7 +272,7 @@
   }
 
   .login_menu_icon {
-    display: block;
+    display: block; 
   }
 
   .enterotp_nav {
@@ -283,6 +286,8 @@
     padding: 120px 20px 20px;
     height: auto;
     margin-top: 100px;
+    position: fixed;
+    background: transparent;
   }
 
   .enterotp_home .enterotp_wrapper_login {

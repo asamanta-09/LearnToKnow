@@ -13,4 +13,20 @@
 
 .Toastify{
   box-shadow: none;
+  background: transparent;
 }
+
+
+.Toastify__toast-container {
+  width: 100%;
+  max-width: 90vw;
+  transform: translateX(-50%) !important;
+  padding: 0 1rem;
+  box-sizing: border-box;
+  pointer-events: auto;
+}
+
+.Toastify__toast {
+  font-size: 0.9rem;
+}
+
