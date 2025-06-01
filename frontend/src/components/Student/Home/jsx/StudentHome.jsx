@@ -31,7 +31,7 @@ const StudentHome = () => {
 
   //fetch opline couses
   useEffect(() => {
-    axios.get(`${backendURL}/course/getOnlineCourses`,{ withCredentials: true})
+    axios.get(`${backendURL}/course/getOnlineCourses`, { withCredentials: true })
       .then((response) => {
         const course = groupCoursesByTopic(response.data.course);
         setOnline_courses(course);
@@ -43,7 +43,7 @@ const StudentHome = () => {
 
   //fetch offline courses
   useEffect(() => {
-    axios.get(`${backendURL}/course/getOfflineCourses`,{ withCredentials: true})
+    axios.get(`${backendURL}/course/getOfflineCourses`, { withCredentials: true })
       .then((response) => {
         const course = groupCoursesByTopic(response.data.course);
         setOffline_courses(course);
@@ -55,7 +55,7 @@ const StudentHome = () => {
 
   //fetch notes
   useEffect(() => {
-    axios.get(`${backendURL}/notes/view`,{ withCredentials: true})
+    axios.get(`${backendURL}/notes/view`, { withCredentials: true })
       .then((response) => {
         setNotes(response.data?.notes || []);
       })
@@ -66,7 +66,7 @@ const StudentHome = () => {
 
   //fetch playlists
   useEffect(() => {
-    axios.get(`${backendURL}/playlist/view`,{ withCredentials: true})
+    axios.get(`${backendURL}/playlist/view`, { withCredentials: true })
       .then((response) => {
         setPlaylists(response.data?.playlist || []);
       })
