@@ -7,6 +7,7 @@ import styles from '../css/AddNotes.module.css';
 const AddNotes = () => {
   const [showForm, setShowForm] = useState(false);
   const [notes, setNotes] = useState([]);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleCloseForm = () => {
     setShowForm(false);
@@ -23,7 +24,7 @@ const AddNotes = () => {
 
 
   useEffect(() => {
-    axios.get('/notes/view',{ withCredentials: true })
+    axios.get(`${backendURL}/notes/view`,{ withCredentials: true })
       .then((response) => {
         setNotes(response.data?.notes || []);
       })

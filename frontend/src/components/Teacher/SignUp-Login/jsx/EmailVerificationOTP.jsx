@@ -12,14 +12,15 @@ function EmailVerificationOTPTeacher() {
   const location = useLocation();
   const { teacherData } = location.state || {};
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = { email: teacherData.email, otp };
-    axios.post('/teacher/verifyOTP', data, { withCredentials: true })
+    axios.post(`${backendURL}/teacher/verifyOTP`, data, { withCredentials: true })
       .then((response) => {
         if (response.data.success === true) {
-          return axios.post('/teacher/signUp', teacherData, { withCredentials: true })
+          return axios.post(`${backendURL}/teacher/signUp`, teacherData, { withCredentials: true })
         } else {
           toast.error(response.data?.message || "Something went wrong");
           throw new Error("Invalid OTP");

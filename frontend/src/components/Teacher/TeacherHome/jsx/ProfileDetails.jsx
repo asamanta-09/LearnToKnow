@@ -9,18 +9,19 @@ import { FaHandPointRight } from "react-icons/fa";
 
 const ProfileDetails = () => {
   const [profile, setProfile] = useState({});
-  const email=localStorage.getItem('email');
+  const email = localStorage.getItem('email');
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     if (!email) return; // skip if email is not set
-    axios.get(`/teacher/getProfileInfo`, { params: { email } })
+    axios.get(`${backendURL}/teacher/getProfileInfo`, { params: { email } , withCredentials: true, })
       .then((response) => {
-        setProfile(response.data.student);
+        setProfile(response.data.teacher);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [email]);
+  }, []);
 
   return (
     <div className={styles['hero-section']}>

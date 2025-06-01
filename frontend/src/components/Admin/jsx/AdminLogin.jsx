@@ -8,6 +8,7 @@ const AdminLogin = () => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleForm = async (e) => {
     e.preventDefault();
@@ -16,7 +17,7 @@ const AdminLogin = () => {
 
     try {
       localStorage.removeItem('token'); // clear old token
-      const response = await axios.post('/admin/login', { username, password }, { withCredentials: true });
+      const response = await axios.post(`${backendURL}/admin/login`, { username, password }, { withCredentials: true });
       if (response.data.success) {
         localStorage.setItem('token', response.data?.token);
         localStorage.setItem('email', username);

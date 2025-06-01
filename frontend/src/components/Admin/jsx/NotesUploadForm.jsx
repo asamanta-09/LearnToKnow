@@ -5,6 +5,7 @@ import styles from '../css/NotesUploadForm.module.css';
 
 const NotesUploadForm = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const [formData, setFormData] = useState({
     topic: '',
     title: '',
@@ -33,7 +34,7 @@ const NotesUploadForm = ({ onClose }) => {
     formSubmission.append('pdf', formData.pdf);
 
     try {
-      const response = await axios.post('/notes/create', formSubmission, { withCredentials: true });
+      const response = await axios.post(`${backendURL}/notes/create`, formSubmission, { withCredentials: true });
       if (response.data?.success) {
         onClose();
         toast.success(response.data.message || "Notes added successfully");

@@ -6,6 +6,7 @@ import styles from '../css/ProfileCardDropDown.module.css';
 
 const ProfileCardDropDown = () => {
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const options = [
     { label: "View Profile", action: () => navigate('/profile') },
     { label: "Edit Profile", action: () => navigate('/edit-profile') },
@@ -13,7 +14,7 @@ const ProfileCardDropDown = () => {
     {
       label: "Logout", action: async () => {
         try {
-          const response = await axios.post("/admin/logout", { withCredentials: true });
+          const response = await axios.post(`${backendURL}/admin/logout`, { withCredentials: true });
           if (response.data.success) {
             localStorage.removeItem("token");
             localStorage.removeItem("username");
@@ -24,7 +25,7 @@ const ProfileCardDropDown = () => {
             toast.error(response.data.message || "Something went wrong");
           }
         } catch (err) {
-          consoe.error("Logout failed:", err);
+          console.error("Logout failed:", err);
           toast.error("Login Failed: Something went wrong");
         }
       }

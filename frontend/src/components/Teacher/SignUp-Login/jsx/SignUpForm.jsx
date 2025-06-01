@@ -7,6 +7,7 @@ import { IonIcon } from "@ionic/react";
 import { personOutline, mailOutline, callOutline, calendarOutline, accessibilityOutline, createOutline, briefcaseOutline, businessOutline, peopleOutline, schoolOutline, libraryOutline, lockClosedOutline, logoFirebase, closeOutline, menuOutline } from "ionicons/icons";
 
 function SignupFormTeacher() {
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const [currentStep, setCurrentStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
@@ -141,7 +142,7 @@ function SignupFormTeacher() {
           });
 
           toast.info(res.data?.message);
-          navigate('/teachers/email-verification', { state: { teacherData } });
+          navigate(`${backendURL}/teachers/email-verification`, { state: { teacherData } });
         } else {
           toast.error(res.data?.message || "Something went wrong");
         }

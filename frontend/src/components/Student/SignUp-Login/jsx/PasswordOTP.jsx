@@ -16,7 +16,8 @@ function PasswordOTP() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/student/verifyOTP', { email, otp }, { withCredentials: true })
+    const backendURL = import.meta.env.VITE_BACKEND_URL;
+    axios.post(`${backendURL}/student/verifyOTP`, { email, otp }, { withCredentials: true })
       .then((response) => {
         if (response.data.success === true) {
           toast.success(response.data?.message);

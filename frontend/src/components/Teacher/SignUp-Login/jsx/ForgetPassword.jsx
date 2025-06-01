@@ -11,13 +11,14 @@ function ForgetPasswordTeacher() {
   const [email, setEmail] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const name = "Teacher";
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setSending(true);
-      const response = await axios.post('/teacher/generateOTP', { email, name }, { withCredentials: true });
+      const response = await axios.post(`${backendURL}/teacher/generateOTP`, { email, name }, { withCredentials: true });
       if (response.data?.success) {
         toast.info(response.data?.message || "OTP sent to your email successfully");
         navigate('/teachers/password-otp', { state: { email } });

@@ -17,7 +17,8 @@ function EmailVerificationOTP() {
   const handleSubmit = (e) => { 
     e.preventDefault();
     const data = { email: studentData.email, otp };
-    axios.post('/student/verifyOTP', data, { withCredentials: true })
+    const backendURL = import.meta.env.VITE_BACKEND_URL;
+    axios.post(`${backendURL}/student/verifyOTP`, data, { withCredentials: true })
       .then((response) => {
         if (response.data.success === true) {
           return axios.post('/student/signUp', studentData, { withCredentials: true })

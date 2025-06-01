@@ -5,6 +5,7 @@ import styles from '../css/CourseForm.module.css';
 
 
 const CourseForm = ({ onClose, onSubmit }) => {
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const [formData, setFormData] = useState({
     course_title: '',
     topic: '',
@@ -58,7 +59,7 @@ const CourseForm = ({ onClose, onSubmit }) => {
     submissionData.append('email', email);
 
     try {
-      const response = await axios.post('/course/createCourse', submissionData, {
+      const response = await axios.post(`${backendURL}/course/createCourse`, submissionData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       });

@@ -12,10 +12,11 @@ function PasswordOTPTeacher() {
   const location = useLocation();
   const { email } = location.state || {};
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('/teacher/verifyOTP', { email, otp }, { withCredentials: true })
+    axios.post(`${backendURL}/teacher/verifyOTP`, { email, otp }, { withCredentials: true })
       .then((response) => {
         if (response.data.success === true) {
           toast.success("OTP verified");

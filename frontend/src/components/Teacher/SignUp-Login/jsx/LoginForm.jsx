@@ -13,11 +13,12 @@ function LoginPageTeacher() {
   const [error, setError] = useState("");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/teacher/login', { email, password }, { withCredentials: true });
+      const response = await axios.post(`${backendURL}/teacher/login`, { email, password }, { withCredentials: true });
 
       if (response.data?.success) {
         localStorage.setItem('token', response.data.token);

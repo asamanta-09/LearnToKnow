@@ -202,7 +202,6 @@ exports.verifyOTP = async (req, res) => {
 
 //password update -need to check
 exports.passwordUpdate = async (req, res) => {
-  console.log("ji");
   try {
     const { email, password } = req.body;
     const student = await Teacher.findOne({ email });
@@ -234,8 +233,8 @@ exports.passwordUpdate = async (req, res) => {
 exports.getProfileInfo = async (req, res) => {
   const { email } = req.query;
   try {
-    const student = await Teacher.findOne({ email });
-    if (!student) {
+    const teacher = await Teacher.findOne({ email });
+    if (!teacher) {
       console.log("Teacher not found for the email");
       return res.json({
         success: false,
@@ -244,7 +243,7 @@ exports.getProfileInfo = async (req, res) => {
     }
     return res.status(200).json({
       success: true,
-      student: student,
+      teacher: teacher,
     });
   } catch (error) {
     console.error("Error fetching profile info:", error);

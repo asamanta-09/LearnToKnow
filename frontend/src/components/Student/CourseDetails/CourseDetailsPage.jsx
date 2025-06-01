@@ -8,6 +8,7 @@ const CourseDetailsPage = () => {
   const location = useLocation();
   const courseDetails = location.state?.courseDetails || {};
   const [teacher, setTeacher] = useState(null);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const formatDate = (dateString) => {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
@@ -18,7 +19,7 @@ const CourseDetailsPage = () => {
     const fetchTeacherDetails = async () => {
       if (courseDetails.created_by?.[0]) {
         try {
-          const response = await axios.get(`/teacher/getTeacherDetails?email=${courseDetails.created_by[0]}`);
+          const response = await axios.get(`${backendURL}/teacher/getTeacherDetails?email=${courseDetails.created_by[0]}`,{ withCredentials: true});
           setTeacher(response.data || null);
         } catch (error) {
           console.error('Error fetching teacher details:', error);

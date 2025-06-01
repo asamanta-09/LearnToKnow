@@ -10,10 +10,11 @@ import axios from 'axios';
 const ProfileDetails = () => {
   const [profile, setProfile] = useState({});
   const email=localStorage.getItem('email');
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     if (!email) return; // skip if email is not set
-    axios.get(`/student/getProfileInfo`, { params: { email } })
+    axios.get(`${backendURL}/student/getProfileInfo`, { params: { email } })
       .then((response) => {
         setProfile(response.data.student);
       })

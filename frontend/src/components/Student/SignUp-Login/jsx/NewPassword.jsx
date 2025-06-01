@@ -22,7 +22,8 @@ function NewPassword() {
     }
 
     try {
-      const res = await axios.patch('/student/passwordUpdate', { email, password }, { withCredentials: true });
+      const backendURL = import.meta.env.VITE_BACKEND_URL;
+      const res = await axios.patch(`${backendURL}/student/passwordUpdate`, { email, password }, { withCredentials: true });
       if (res.data?.success) {
         toast.success(res.data?.message);
         toast.info("you are redirecting to login page..");

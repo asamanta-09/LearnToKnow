@@ -132,7 +132,8 @@ function SignupForm() {
       password
     };
 
-    axios.post('/student/generateOTP', { email: studentData.email, name: studentData.name }, { withCredentials: true })
+    const backendURL = import.meta.env.VITE_BACKEND_URL;
+    axios.post(`${backendURL}/student/generateOTP`, { email: studentData.email, name: studentData.name }, { withCredentials: true })
       .then((res) => {
         if (res.data?.success === true) {
           setFormData({

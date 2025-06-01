@@ -9,9 +9,10 @@ const ProvidedCourses = () => {
   const [offline_courses, setOffline_courses] = useState([]);
   const email = localStorage.getItem('email');
   const navigate=useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
-    axios.post('/course/getOnlineCoursesByTeacher', { email }, { withCredentials: true })
+    axios.post(`${backendURL}/course/getOnlineCoursesByTeacher`, { email }, { withCredentials: true })
       .then((response) => {
         const course = response.data.courses;
         setOnline_courses(course);
@@ -22,7 +23,7 @@ const ProvidedCourses = () => {
   }, [online_courses]);
 
   useEffect(() => {
-    axios.post('/course/getOfflineCoursesByTeacher', { email }, { withCredentials: true })
+    axios.post(`${backendURL}/course/getOfflineCoursesByTeacher`, { email }, { withCredentials: true })
       .then((response) => {
         const course = response.data.courses;
         setOffline_courses(course);

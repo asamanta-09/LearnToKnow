@@ -10,6 +10,7 @@ const AddReferenceVideos = () => {
   const [showForm, setShowForm] = useState(false);
   const [playlist, setPlaylist] = useState([]);
   const token = localStorage.getItem('token');
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleCloseForm = () => {
     setShowForm(false);
@@ -34,7 +35,7 @@ const AddReferenceVideos = () => {
 
 
 useEffect(() => {
-  axios.get('/playlist/view', { withCredentials: true })
+  axios.get(`${backendURL}/playlist/view`, { withCredentials: true })
     .then((response) => {
       setPlaylist(response.data?.playlist || []);
     })

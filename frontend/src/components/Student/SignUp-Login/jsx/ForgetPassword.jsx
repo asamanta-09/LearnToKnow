@@ -17,7 +17,8 @@ function ForgetPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('/student/generateOTP', { email, name }, { withCredentials: true });
+      const backendURL = import.meta.env.VITE_BACKEND_URL;
+      const response = await axios.post(`${backendURL}/student/generateOTP`, { email, name }, { withCredentials: true });
       if(response.data?.success){
         toast.success(response.data?.message)
         navigate('/students/password-otp', { state: { email } });

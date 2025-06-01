@@ -17,7 +17,8 @@ function LoginPage() {
     e.preventDefault(); 
     try {
       localStorage.removeItem('token'); // clear old token
-      const response = await axios.post('/student/login', { email, password }, { withCredentials: true });
+      const backendURL = import.meta.env.VITE_BACKEND_URL;
+      const response = await axios.post( `${backendURL}/student/login`, { email, password }, { withCredentials: true });
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', email);

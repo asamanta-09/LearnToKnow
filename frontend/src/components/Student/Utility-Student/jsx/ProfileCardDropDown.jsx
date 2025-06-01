@@ -6,6 +6,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const ProfileCardDropDown = () => {
   const navigate = useNavigate();
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
   const options = [
     { label: "View Profile", action: () => navigate('/profile') },
     { label: "Edit Profile", action: () => navigate('/edit-profile') },
@@ -13,7 +14,7 @@ const ProfileCardDropDown = () => {
     {
       label: "Logout", action: async () => {
         try {
-          const response = await axios.post("/student/logout", {}, { withCredentials: true });
+          const response = await axios.post(`${backendURL}/student/logout`, {}, { withCredentials: true });
           if (response.data?.success) {
             localStorage.removeItem("token");
             localStorage.removeItem("email");

@@ -7,11 +7,12 @@ const DonutChart = () => {
   const [topics, setTopics] = useState([]);
   const [counts, setCounts] = useState([]);
   const teacherEmail = localStorage.getItem('email');
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchChartData = async () => {
       try {
-        const res = await axios.get(`/course/${teacherEmail}/course-enrollments-by-topic`);
+        const res = await axios.get(`${backendURL}/course/${teacherEmail}/course-enrollments-by-topic`, {withCredentials: true} );
         const data = res.data;
 
         const topicNames = data.map(item => item.topic);

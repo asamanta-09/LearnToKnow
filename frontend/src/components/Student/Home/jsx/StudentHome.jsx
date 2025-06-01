@@ -13,6 +13,7 @@ const StudentHome = () => {
   const [offline_courses, setOffline_courses] = useState([]);
   const [notes, setNotes] = useState([]);
   const [playlists, setPlaylists] = useState([]);
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   //group by topic of the course
   const groupCoursesByTopic = (courses) => {
@@ -30,7 +31,7 @@ const StudentHome = () => {
 
   //fetch opline couses
   useEffect(() => {
-    axios.get('/course/getOnlineCourses')
+    axios.get(`${backendURL}/course/getOnlineCourses`,{ withCredentials: true})
       .then((response) => {
         const course = groupCoursesByTopic(response.data.course);
         setOnline_courses(course);
@@ -42,7 +43,7 @@ const StudentHome = () => {
 
   //fetch offline courses
   useEffect(() => {
-    axios.get('/course/getOfflineCourses')
+    axios.get(`${backendURL}/course/getOfflineCourses`,{ withCredentials: true})
       .then((response) => {
         const course = groupCoursesByTopic(response.data.course);
         setOffline_courses(course);
@@ -54,7 +55,7 @@ const StudentHome = () => {
 
   //fetch notes
   useEffect(() => {
-    axios.get('/notes/view')
+    axios.get(`${backendURL}/notes/view`,{ withCredentials: true})
       .then((response) => {
         setNotes(response.data?.notes || []);
       })
@@ -65,7 +66,7 @@ const StudentHome = () => {
 
   //fetch playlists
   useEffect(() => {
-    axios.get('/playlist/view')
+    axios.get(`${backendURL}/playlist/view`,{ withCredentials: true})
       .then((response) => {
         setPlaylists(response.data?.playlist || []);
       })

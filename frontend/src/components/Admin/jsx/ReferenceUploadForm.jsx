@@ -13,6 +13,7 @@ const ReferenceUploadForm = ({ onClose }) => {
     youtube_link: ''
   });
   const token = localStorage.getItem('token')
+  const backendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -34,7 +35,7 @@ const ReferenceUploadForm = ({ onClose }) => {
     formSubmission.append('youtube_link', formData.youtube_link);
 
     try {
-      const response = await axios.post('/playlist/create', formSubmission, { withCredentials: true });
+      const response = await axios.post(`${backendURL}/playlist/create`, formSubmission, { withCredentials: true });
       if(response.data?.success){
         toast.success(response.data?.message || "Reference added successfully");
         onClose();
