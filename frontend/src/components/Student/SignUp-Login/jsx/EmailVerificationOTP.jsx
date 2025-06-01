@@ -1,10 +1,10 @@
 import axios from "axios";
 import { useState } from "react";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import styles from "../css/enterotp.module.css";
+import styles from "../css/EnterOTP.module.css";
 import { IonIcon } from "@ionic/react";
-import { logoFirebase, keyOutline, arrowBackOutline,menuOutline,closeOutline } from "ionicons/icons";
+import { logoFirebase, keyOutline, arrowBackOutline, menuOutline, closeOutline } from "ionicons/icons";
 
 
 function EmailVerificationOTP() {
@@ -14,7 +14,7 @@ function EmailVerificationOTP() {
   const { studentData } = location.state || {};
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => { 
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = { email: studentData.email, otp };
     const backendURL = import.meta.env.VITE_BACKEND_URL;
@@ -80,8 +80,8 @@ function EmailVerificationOTP() {
           <h3>Learning is a journey, not a destination</h3>
           <p>
             “Knowledge is the seed, learning is the rain.
-             With patience and curiosity, wisdom blooms.
-             A mind open to learning is a garden that never withers.”
+            With patience and curiosity, wisdom blooms.
+            A mind open to learning is a garden that never withers.”
           </p>
           <Link to="#">Get Started</Link>
         </div>

@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IonIcon } from "@ionic/react";
 import { logoFirebase, keyOutline, arrowBackOutline ,closeOutline, menuOutline} from "ionicons/icons";
-import styles from "../css/enterotp.module.css";
+import styles from "../css/EnterOTP.module.css";
 
 function PasswordOTPTeacher() {
   const [otp, setOTP] = useState("");
