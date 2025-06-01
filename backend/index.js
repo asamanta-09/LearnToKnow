@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173","https://learntoknow.vercel.app"],
+    origin: ["http://localhost:5173", "https://learntoknow.vercel.app"],
     credentials: true,
   })
 );
@@ -14,6 +14,10 @@ app.use(express.json()); // for parsing json
 app.use(express.urlencoded({ extended: true })); // for parsing form
 app.use(cookieParser());
 require("./config/database").connect(); //connect with database
+
+app.get("/", (req, res) => {
+  res.send("Welcome to the LearnToKnow");
+});
 
 const student = require("./routes/student");
 app.use("/student", student);
