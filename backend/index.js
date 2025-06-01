@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://learntoknow.vercel.app"],
+    origin: "https://learntoknow.vercel.app",
     credentials: true,
   })
 );
@@ -37,7 +37,7 @@ app.use("/notes", notes);
 const playlist = require("./routes/playlist.js");
 app.use("/playlist", playlist);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server connected at http://localhost:${PORT}`);
 });
