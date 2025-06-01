@@ -17,8 +17,8 @@ const Footer = () => {
             <a href="faq">Terms of Use</a>
           </div>
           <div className={styles["footer-item"]}>
-            <p>Phone: <a href="tel:7439882608">7439882608</a></p>
-            <p>Email: <a href="mailto:thegreencorner@gmail.com">learntoknow@gmail.com</a></p>
+            <p>Phone: <a href="tel:7439882608">xxxxxxxxxx</a></p>
+            <p>Email: <a href="mailto:thegreencorner@gmail.com">learntoknow.co@gmail.com</a></p>
           </div>
         </div>
         <div className={styles["footer-office-address"]}>
@@ -29,7 +29,7 @@ const Footer = () => {
           <div className={styles["social-container"]}>
             <div className={styles["social-box"]}>
               <a href="">
-              <img src="/fb.png" alt="Facebook" title="Facebook" />
+                <img src="/fb.png" alt="Facebook" title="Facebook" />
               </a>
               <a href="">
                 <img src="/twitter.png" alt="Twitter" title="Twitter" />
