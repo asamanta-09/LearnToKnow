@@ -11,7 +11,6 @@ exports.auth = (req, res, next) => {
       req.body?.token ||
       req.cookies?.token ||
       (authHeader && authHeader.replace("Bearer ", ""));
-      console.log(token);
     if (!token) {
       return res.status(401).json({
         success: false,
@@ -39,7 +38,6 @@ exports.auth = (req, res, next) => {
 };
 
 exports.isStudent = (req, res, next) => {
-  comsole.log(req.user.role);
   try {
     if (req.user.role !== "student") {
       return res.status(403).json({
@@ -58,7 +56,6 @@ exports.isStudent = (req, res, next) => {
 };
 
 exports.isTeacher = (req, res, next) => {
-  comsole.log(req.user.role);
   try {
     if (req.user.role !== "teacher") {
       return res.status(403).json({
@@ -77,7 +74,6 @@ exports.isTeacher = (req, res, next) => {
 };
 
 exports.isAdmin = (req, res, next) => {
-  comsole.log(req.user.role);
   try {
     if (req.user.role !== "admin") {
       return res.status(403).json({
@@ -93,4 +89,5 @@ exports.isAdmin = (req, res, next) => {
     });
   }
 };
+
 

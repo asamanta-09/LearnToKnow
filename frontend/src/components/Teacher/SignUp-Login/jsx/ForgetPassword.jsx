@@ -17,12 +17,18 @@ function ForgetPasswordTeacher() {
     e.preventDefault();
     try {
       setSending(true);
-      await axios.post('/teacher/generateOTP', { email, name }, { withCredentials: true });
-      toast.info("OTP sent to your email successfully");
-      navigate('/teachers/password-otp', { state: { email } });
+      const response = await axios.post('/teacher/generateOTP', { email, name }, { withCredentials: true });
+      if (response.data?.success) {
+        toast.info(response.data?.message || "OTP sent to your email successfully");
+        navigate('/teachers/password-otp', { state: { email } });
+      }
+      else{
+        toast.error(response.data?.message || "Something went wrong");
+      }
       setSending(false)
     } catch (error) {
       console.error('Error sending login data:', error);
+      toast.error("Failed: Something went wrong");
     }
   };
 

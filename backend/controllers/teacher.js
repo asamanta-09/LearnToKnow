@@ -202,6 +202,7 @@ exports.verifyOTP = async (req, res) => {
 
 //password update -need to check
 exports.passwordUpdate = async (req, res) => {
+  console.log("ji");
   try {
     const { email, password } = req.body;
     const student = await Teacher.findOne({ email });

@@ -1,16 +1,18 @@
 import { useState } from 'react';
+import { IonIcon } from "@ionic/react";
+import { Link } from 'react-router-dom';
 import DropdownMenu from './DropdownMenu';
 import ProfileCardDropDown from './ProfileCardDropDown';
 import styles from '../css/Navbar.module.css'
 import { CiBellOn } from "react-icons/ci";
 import { IoSearch } from "react-icons/io5";
 import { FaWhatsapp } from "react-icons/fa";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 import { SiGoogletranslate } from "react-icons/si";
-import { Link } from 'react-router-dom';
-import { IonIcon } from "@ionic/react";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa6";
 
 const Navbar = () => {
+
+  //just dummy data - need to fatch from backend
   const coursemenuItem = {
     option1: {
       name: "Newly Launched",

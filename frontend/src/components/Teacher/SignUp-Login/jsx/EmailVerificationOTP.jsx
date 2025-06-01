@@ -1,5 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
+import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IonIcon } from "@ionic/react";
 import { logoFirebase, keyOutline, arrowBackOutline, menuOutline, closeOutline } from "ionicons/icons";
@@ -20,23 +21,25 @@ function EmailVerificationOTPTeacher() {
         if (response.data.success === true) {
           return axios.post('/teacher/signUp', teacherData, { withCredentials: true })
         } else {
-          toast.warn(response.data.message);
+          toast.error(response.data?.message || "Something went wrong");
           throw new Error("Invalid OTP");
         }
       })
       .then((res) => {
         if (res.data.success === true) {
-          toast.success(res.data.message);
+          toast.success(res.data?.message);
           navigate('/teachers/login');
         } else {
-          toast(res.data.message);
+          toast.error(res.data?.message || "Something went wrong");
         }
       })
       .catch((error) => {
         console.error('Error during verification/sign up:', error);
+        toast.error("Failed : Something went wrong");
       });
 
   };
+
 
 
   return (

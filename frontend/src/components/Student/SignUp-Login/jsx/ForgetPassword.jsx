@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify';
 import styles from "../css/ForgetPassword.module.css";
-
 import { IonIcon } from "@ionic/react";
 import { mailOutline, logoFirebase, arrowBackOutline, closeOutline, menuOutline } from 'ionicons/icons';
 
@@ -17,10 +17,17 @@ function ForgetPassword() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/student/generateOTP', { email, name }, { withCredentials: true });
-      navigate('/students/password-otp', { state: { email } });
+      const response = await axios.post('/student/generateOTP', { email, name }, { withCredentials: true });
+      if(response.data?.success){
+        toast.success(response.data?.message)
+        navigate('/students/password-otp', { state: { email } });
+      }
+      else{
+        toast.error(response.data?.message);
+      }
     } catch (error) {
       console.error('Error sending login data:', error);
+      toast.error("Failed:Something went wrong");
     }
     finally {
       setLoading(false);

@@ -74,6 +74,7 @@
   display: flex;
   cursor: pointer;
   background-color: #fff;
+  border: 1px solid white;
 }
 
 .course-card-item img {
@@ -108,7 +109,7 @@
   box-shadow: 0 8px 20px rgba(177, 176, 175, 0.4);
 }
 
-.notes-section{
+.notes-section {
   border-radius: 120px;
 }
 
@@ -118,7 +119,7 @@
   left: 25px;
   width: 70%;
   color: #f5f5f5;
-  font-size: 25px; 
+  font-size: 25px;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);

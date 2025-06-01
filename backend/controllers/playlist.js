@@ -11,7 +11,7 @@ cloudinary.config({
 
 //create the new playlist
 exports.addNewPlaylist = async (req, res) => {
-  const { topic, title, image, youtube_link } = req.body;
+  const { topic, title, youtube_link } = req.body;
   
   let thumbnailUrl = "";
   if (req.file) {
@@ -34,7 +34,7 @@ exports.addNewPlaylist = async (req, res) => {
     } catch (err) {
       return res
       .status(500)
-      .json({ success: false, error: "Image upload failed" });
+      .json({ success: false, message: "Image upload failed" });
     }
   }
   
@@ -42,12 +42,12 @@ exports.addNewPlaylist = async (req, res) => {
     const course = await Playlist.create({ topic,title , image: thumbnailUrl,youtube_link });
     res.status(201).json({
       success: true,
-      message: "Playlist created successfully",
+      message: "Reference added successfully",
     });
   } catch (error) {
     res
     .status(500)
-    .json({ success: false, error: "Failed to create playlist" });
+    .json({ success: false, message: "Failed to create reference" });
   }
   
 };
@@ -69,6 +69,6 @@ exports.getPlaylist = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "Failed to fetch playlists" });
+      .json({ success: false, message: "Failed to fetch playlists" });
   }
 };

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import axios from 'axios';
+import { useState, useEffect } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom';
 import CourseCard from './CourseCard';
 import styles from '../css/ProvidedCourses.module.css'
-import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
 
 const ProvidedCourses = () => {
   const [online_courses, setOnline_courses] = useState([]);
@@ -75,7 +75,6 @@ const ProvidedCourses = () => {
               <p>No course to display</p>
             ) : (
               offline_courses.map((course) => (
-
                 <div key={course._id} className={styles['course-card-item']} onClick={() => handleClick(course)}>
                   <CourseCard course={course} />
                 </div>

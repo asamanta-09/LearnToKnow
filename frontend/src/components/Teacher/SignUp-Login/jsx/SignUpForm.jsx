@@ -1,20 +1,14 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
+import { useState } from "react";
 import { toast } from 'react-toastify';
-
-import { IonIcon } from "@ionic/react";
-import {
-  personOutline, mailOutline, callOutline, calendarOutline,
-  accessibilityOutline, createOutline, briefcaseOutline,
-  businessOutline, peopleOutline, schoolOutline, libraryOutline,
-  lockClosedOutline, logoFirebase, closeOutline, menuOutline
-} from "ionicons/icons";
-
+import { Link, useNavigate } from 'react-router-dom'
 import styles from "../css/SignupForm.module.css";
+import { IonIcon } from "@ionic/react";
+import { personOutline, mailOutline, callOutline, calendarOutline, accessibilityOutline, createOutline, briefcaseOutline, businessOutline, peopleOutline, schoolOutline, libraryOutline, lockClosedOutline, logoFirebase, closeOutline, menuOutline } from "ionicons/icons";
 
 function SignupFormTeacher() {
   const [currentStep, setCurrentStep] = useState(0);
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -120,6 +114,7 @@ function SignupFormTeacher() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { name, email, phone_no, dob, gender, about, profession, worksAt, job_role, qualification, qualifying_institution, password } = formData;
 
     const teacherData = {
@@ -148,11 +143,13 @@ function SignupFormTeacher() {
           toast.info(res.data?.message);
           navigate('/teachers/email-verification', { state: { teacherData } });
         } else {
-          alert(res.data?.message);
+          toast.error(res.data?.message || "Something went wrong");
         }
+        setLoading(false);
       })
       .catch((error) => {
         console.error('Error in verification:', error);
+        toast.error("Failed: Something went wrong");
       });
   };
 
@@ -187,7 +184,7 @@ function SignupFormTeacher() {
         <button type="button" className={styles.signup_btn} onClick={nextStep}>Next</button>
       </div>
     </>,
-
+ 
     <>
       <div className={styles.signup_input_box}>
         <span className={styles.signup_icon}><IonIcon icon={accessibilityOutline} /></span>
@@ -258,7 +255,7 @@ function SignupFormTeacher() {
       </div>
       <div className={styles.signup_btn_group}>
         <button type="button" className={styles.signup_btn} onClick={prevStep}>Back</button>
-        <button type="submit" className={styles.signup_btn}>Submit</button>
+        <button type="submit" className={styles.signup_btn} disabled={loading}>{loading ? 'Wait a moment..' : 'Verify'}</button>
       </div>
     </>
   ];

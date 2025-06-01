@@ -66,5 +66,4 @@ const studentSchema = new mongoose.Schema(
 ); // adds createdAt, updatedAt
 
 const Student = mongoose.model("Student", studentSchema);
-
 module.exports = Student;

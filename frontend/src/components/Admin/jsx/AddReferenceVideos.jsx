@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import ReferenceUploadForm from './ReferenceUploadForm';
 import styles from '../css/AddReferenceVideos.module.css';
-import axios from 'axios';
 
 
 
 const AddReferenceVideos = () => {
   const [showForm, setShowForm] = useState(false);
   const [playlist, setPlaylist] = useState([]);
-  const token=localStorage.getItem('token');
+  const token = localStorage.getItem('token');
 
   const handleCloseForm = () => {
     setShowForm(false);
@@ -33,20 +33,16 @@ const AddReferenceVideos = () => {
   };
 
 
-  useEffect(() => {
-    axios.get('/playlist/view', {
-      headers: {
-        "Authorization": `Bearer ${token}`,
-        "Content-Type": "application/json"
-      }
+useEffect(() => {
+  axios.get('/playlist/view', { withCredentials: true })
+    .then((response) => {
+      setPlaylist(response.data?.playlist || []);
     })
-      .then((response) => {
-        setPlaylist(response.data?.playlist || []);
-      })
-      .catch((err) => {
-        console.error("Error fetching playlists:", err);
-      });
-  }, []);
+    .catch((err) => {
+      console.error("Error fetching playlists:", err);
+    });
+}, []);
+
 
   return (
     <>

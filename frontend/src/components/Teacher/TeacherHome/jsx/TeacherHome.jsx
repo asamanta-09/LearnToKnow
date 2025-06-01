@@ -4,7 +4,6 @@ import Footer from '../../../Utility-all/Footer'
 import Statistics from './Statistics';
 import ProvidedCourses from './ProvidedCourses';
 import AddNewCourse from './AddNewCourse';
-
 import styles from '../css/TeacherHome.module.css'
 
 const TeacherHome = () => {

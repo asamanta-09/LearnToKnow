@@ -17,11 +17,11 @@ const Header = () => {
         </div>
 
         <nav className={styles.home_nav}>
-          <a href="#home">Home</a>
-          <a href="#about">About Us</a>
-          <a href="#whyus">Why Us</a>
-          <a href="#ourgoal">Our Goal</a>
-          <a href="#contact">Contact Us</a>
+          <Link to="/home">Home</Link>
+          <Link to="/about-us">About Us</Link>
+          <Link to="/why-us">Why Us</Link>
+          <Link to="/our-goal">Our Goal</Link>
+          <Link to="/contact-us">Contact Us</Link>
         </nav>
       </header>
 

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from "react";
+import {toast} from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from "../css/NewPassword.module.css";
 import { IonIcon } from "@ionic/react";
@@ -16,20 +17,22 @@ function NewPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert("Password and confirm password do not match");
+      toast.warn("Password and confirm password do not match");
       return;
     }
 
     try {
-      const res = await axios.post('/student/passwordUpdate', { email, password }, { withCredentials: true });
-      if (res.data.success) {
+      const res = await axios.patch('/student/passwordUpdate', { email, password }, { withCredentials: true });
+      if (res.data?.success) {
+        toast.success(res.data?.message);
+        toast.info("you are redirecting to login page..");
         navigate('/students/login');
       } else {
-        alert(res.data.message);
+        toast.error(res.data?.message);
       }
     } catch (error) {
       console.error('Error in updating password:', error);
-      alert("Something went wrong while updating the password");
+      toast.error("Something went wrong while updating the password");
     }
   };
 

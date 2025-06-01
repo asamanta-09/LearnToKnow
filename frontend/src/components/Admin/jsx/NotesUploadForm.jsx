@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styles from '../css/NotesUploadForm.module.css';
 import axios from 'axios';
+import { useState } from 'react';
 import { toast } from 'react-toastify'
+import styles from '../css/NotesUploadForm.module.css';
 
 const NotesUploadForm = ({ onClose }) => {
   const [loading, setLoading] = useState(false);
@@ -33,14 +33,17 @@ const NotesUploadForm = ({ onClose }) => {
     formSubmission.append('pdf', formData.pdf);
 
     try {
-      const response = await axios.post('/notes/create', formSubmission, {
-        headers: { 'Content-Type': 'multipart/form-data', "Authorization": `Bearer ${token}` },
-      });
-      console.log('Upload success:', response.data);
-      onClose();
-      toast.success("Notes added successfully");
+      const response = await axios.post('/notes/create', formSubmission, { withCredentials: true });
+      if (response.data?.success) {
+        onClose();
+        toast.success(response.data.message || "Notes added successfully");
+      }
+      else {
+        toast.error(response.data.message || "Something went wrong");
+      }
     } catch (error) {
       console.error('Upload failed:', error.response?.data || error.message);
+      toast.error("Failed : Something went wrong");
     }
     finally {
       setLoading(false);
@@ -78,9 +81,11 @@ const NotesUploadForm = ({ onClose }) => {
             </div>
           </div>
 
-          <button type="submit" className={styles.submitButton} disabled={loading}>
-            {loading ? 'Uploading...' : 'Submit'}
-          </button>
+          <div className={styles.lastPart}>
+            <button type="submit" className={styles.submitButton} disabled={loading}>
+              {loading ? 'Uploading...' : 'Submit'}
+            </button>
+          </div>
         </form>
       </div>
     </div>

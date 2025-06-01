@@ -8,14 +8,13 @@ const { addNewNote, getNotes } = require("../controllers/notes");
 const {auth,isAdmin}=require('../middlewires/auth');
 
 router.post(
-  "/create", auth.apply,isAdmin,
+  "/create", auth,isAdmin,
   upload.fields([
     { name: "pdf", maxCount: 1 },
     { name: "image", maxCount: 1 },
   ]),
   addNewNote
 );
-
 router.get("/view",auth, getNotes);
 
 module.exports = router;

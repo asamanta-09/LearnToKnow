@@ -1,10 +1,10 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import styles from '../css/ProfileDetails.module.css'
 import { ImLinkedin2 } from "react-icons/im";
 import { FaFacebook } from "react-icons/fa6";
 import { BsTwitterX, BsInstagram } from "react-icons/bs";
-import { FaHandPointRight, FaEnvelopeOpenText } from "react-icons/fa";
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { FaHandPointRight } from "react-icons/fa";
 
 
 const ProfileDetails = () => {

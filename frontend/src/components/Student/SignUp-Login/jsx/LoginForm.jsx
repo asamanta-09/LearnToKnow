@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import { useState } from "react";
+import { Link, useNavigate } from 'react-router-dom';
+import {toast} from 'react-toastify';
 import { IonIcon } from "@ionic/react";
 import { mailOutline, lockClosedOutline, logoFirebase, closeOutline, menuOutline } from 'ionicons/icons';
-
 import styles from "../css/LoginForm.module.css";
 
 function LoginPage() {
@@ -15,20 +14,22 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
     try {
+      localStorage.removeItem('token'); // clear old token
       const response = await axios.post('/student/login', { email, password }, { withCredentials: true });
       if (response.data.success) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', email);
         navigate('/students/home');
+        toast.success(response.data?.message || "Logged in successfully");
       } else {
-        setError("Login failed. Please check your credentials.");
+        toast.error(response.data?.message || "Login failed. Please check your credentials.");
       }
 
     } catch (error) {
       console.error('Error sending login data:', error);
-      setError("Invalid email or password. Please try again.");
+      toast.error("Failed : Something went wrong");
     }
   };
 

@@ -21,11 +21,11 @@ app.use("/student", student);
 const teacher = require("./routes/teacher");
 app.use("/teacher", teacher);
 
-const admin = require("./routes/admin");
-app.use("/admin", admin);
-
 const course = require("./routes/course.js");
 app.use("/course", course);
+
+const admin = require("./routes/admin");
+app.use("/admin", admin);
 
 const notes = require("./routes/notes.js");
 app.use("/notes", notes);

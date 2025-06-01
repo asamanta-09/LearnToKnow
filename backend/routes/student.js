@@ -9,7 +9,7 @@ router.post("/logout",auth,logout);
 router.post("/signUp",signUp);
 router.post("/generateOTP",generateOTP);
 router.post("/verifyOTP",verifyOTP);
-router.post("/passwordUpdate",auth,isStudent,passwordUpdate);
+router.patch("/passwordUpdate",passwordUpdate);
 router.get("/getProfileInfo",auth,isStudent,getProfileInfo);
 
 module.exports = router;

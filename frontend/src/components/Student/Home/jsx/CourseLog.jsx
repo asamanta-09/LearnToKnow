@@ -42,8 +42,7 @@ const CourseLog = ({ online_courses, offline_courses, notes, playlists }) => {
           {Object.entries(online_courses).map(([topic, courses]) => (
             <div key={courses._id} onClick={() => handleClick(courses)}>
               <div className={styles["course-card-item"]}>
-                {/* <img src={course.image} alt={course.name} /> */}
-                <img src="/generative-ai.webp" alt={courses.topic} />
+                <img src="/course_online.png" alt={courses.topic} />
                 <div className={styles['course-card-title']}>{topic}</div>
                 <div className={styles["arrow"]}><FaArrowRight /></div>
               </div>
@@ -65,8 +64,7 @@ const CourseLog = ({ online_courses, offline_courses, notes, playlists }) => {
           {Object.entries(offline_courses).map(([topic, courses]) => (
             <div key={courses._id} onClick={() => handleClick(courses)}>
               <div className={styles["course-card-item"]}>
-                {/* <img src={course.image} alt={course.name} /> */}
-                <img src="/generative-ai.webp" alt={courses.topic} />
+                <img src="/course_offline.png" alt={courses.topic} />
                 <div className={styles['course-card-title']}>{topic}</div>
                 <div className={styles["arrow"]}><FaArrowRight /></div>
               </div>
@@ -87,7 +85,7 @@ const CourseLog = ({ online_courses, offline_courses, notes, playlists }) => {
         <div className={styles["course-cards"]}>
           {notes && notes.length > 0 ? (
             notes.map((note, index) => (
-              <div key={index} onClick={() => handleNoteClick(note)}>
+              <div key={index} onClick={() => handleNoteClick(note.pdf)}>
                 <div className={styles["course-card-item"]}>
                   <img src={note.image} alt={note.topic} />
                   {/* <div className={styles['inside-image-notes']}>{note.title}</div> */}

@@ -11,7 +11,7 @@ const CourseCard = ({ course }) => {
     <div className={styles['card']}>
       <div className={styles['image']}>
         {/* <img src={course.image} alt="Course" /> */}
-        <img src="/generative-ai.webp" alt="Course" />
+        <img src={course.thumbnail} alt="Course" />
       </div>
       <div className={styles['content']}>
         <h4>{course.name || course.course_title}</h4>

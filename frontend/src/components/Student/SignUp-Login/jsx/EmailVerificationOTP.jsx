@@ -1,18 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
+import {toast} from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from "../css/enterotp.module.css";
 import { IonIcon } from "@ionic/react";
-import { logoFirebase, keyOutline, arrowBackOutline } from "ionicons/icons";
+import { logoFirebase, keyOutline, arrowBackOutline,menuOutline,closeOutline } from "ionicons/icons";
 
 
 function EmailVerificationOTP() {
   const [otp, setOTP] = useState("");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
   const { studentData } = location.state || {};
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { 
     e.preventDefault();
     const data = { email: studentData.email, otp };
     axios.post('/student/verifyOTP', data, { withCredentials: true })
@@ -20,20 +22,21 @@ function EmailVerificationOTP() {
         if (response.data.success === true) {
           return axios.post('/student/signUp', studentData, { withCredentials: true })
         } else {
-          alert(response.data.message);
+          toast.error(response.data?.message || "Something went wrong");
           throw new Error("Invalid OTP");
         }
       })
       .then((res) => {
         if (res.data.success === true) {
-          alert(res.data.message);
+          toast.success(res.data?.message);
           navigate('/students/login');
         } else {
-          alert(res.data.message);
+          toast.error(res.data?.message || "Something went wrong");
         }
       })
       .catch((error) => {
         console.error('Error during verification/sign up:', error);
+        toast.error("Failed : Something went wrong");
       });
 
   };

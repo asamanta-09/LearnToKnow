@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import styles from '../css/ProfileCardDropDown.module.css';
 import { IoIosArrowForward } from "react-icons/io";
-import {toast} from 'react-toastify';
 
 const ProfileCardDropDown = () => {
   const navigate = useNavigate();
@@ -10,16 +10,23 @@ const ProfileCardDropDown = () => {
     { label: "View Profile", action: () => navigate('/profile') },
     { label: "Edit Profile", action: () => navigate('/edit-profile') },
     { label: "Settings and Privacy", action: () => navigate('/settings') },
-    { label: "Logout", action: async () => {
+    {
+      label: "Logout", action: async () => {
         try {
-          await axios.post("/student/logout", {}, { withCredentials: true });
+          const response = await axios.post("/student/logout", {}, { withCredentials: true });
+          if (response.data?.success) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("email");
+            toast.success(response.data?.message || "Logged Out Successfully"); 
+            navigate("/students/login");
+          }
+          else{
+            toast.error(response.data?.message);
+          }
         } catch (err) {
           console.error("Logout failed:", err);
+          toast.error(response.data?.message || "Something went wrong");
         }
-        localStorage.removeItem("token");
-        localStorage.removeItem("email");
-        navigate("/students/login");
-        toast.success("Logged Out Successfully");
       }
     }
   ];

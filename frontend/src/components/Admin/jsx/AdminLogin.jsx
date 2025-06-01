@@ -15,23 +15,21 @@ const AdminLogin = () => {
     const password = passwordRef.current.value;
 
     try {
-      const response = await axios.post('/admin/login', { username, password });
-
-      const authHeader = response.headers['authorization']; 
-      if (authHeader) {
-        const token = authHeader.split(" ")[1];
-        localStorage.setItem('token', token);
-        localStorage.setItem('username', username); 
+      localStorage.removeItem('token'); // clear old token
+      const response = await axios.post('/admin/login', { username, password }, { withCredentials: true });
+      if (response.data.success) {
+        localStorage.setItem('token', response.data?.token);
+        localStorage.setItem('email', username);
         navigate('/admins/home');
         toast.success("Welcome back Admin");
       } else {
-        toast.error(response.data.message);
+        toast.error("Login failed. Please check your credentials.");
       }
-
     } catch (error) {
-      toast.error("Invalid username or password. Please try again.");
+      console.error('Error sending login data:', error);
+      toast.error(error.response?.data?.message || "Invalid credentials");
     }
-  }
+  };
 
   return (
     <div className={styles.container}>

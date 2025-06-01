@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import styles from '../css/CourseForm.module.css';
 
 
@@ -61,10 +62,13 @@ const CourseForm = ({ onClose, onSubmit }) => {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: true,
       });
-      console.log('Upload successful:', response.data);
-      onSubmit();
+      if(response.data?.success){
+        toast.success(response.data?.message || "Course added successfully");
+        onSubmit();
+      }
     } catch (error) {
       console.error('Upload error:', error.response?.data || error.message);
+      toast.error("Failed: Something went wrong");
     }
   };
 
@@ -74,7 +78,7 @@ const CourseForm = ({ onClose, onSubmit }) => {
         <div className={styles.modalContent}>
           <button className={styles.closeButton} onClick={onClose}>×</button>
           <form onSubmit={handleSubmit} className={styles.formContainer}>
-          <h3 className={styles.formTitlecreate}>Create a Course</h3>
+            <h3 className={styles.formTitlecreate}>Create a Course</h3>
             <div className={styles.grid}>
               <div className={styles.inputGroup}>
                 <input name="course_title" value={formData.course_title} onChange={handleChange} placeholder=" " className={styles.floatingInput} required />

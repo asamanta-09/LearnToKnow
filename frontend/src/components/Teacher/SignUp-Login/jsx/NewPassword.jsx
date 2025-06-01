@@ -22,17 +22,17 @@ function NewPasswordTeacher() {
     }
 
     try {
-      const res = await axios.post('/teacher/passwordUpdate', { email, password }, { withCredentials: true });
-      if (res.data.success) {
+      const res = await axios.patch('/teacher/passwordUpdate', { email, password }, { withCredentials: true });
+      if (res.data?.success) {
         toast.success("Password updated successfully");
         toast.info("you are redirecting to login page..");
         navigate('/teachers/login');
       } else {
-        toast(res.data.message);
+        toast(res.data?.message);
       }
     } catch (error) {
       console.error('Error in updating password:', error);
-      toast("Something went wrong while updating the password");
+      toast.error("Something went wrong while updating the password");
     }
   };
 

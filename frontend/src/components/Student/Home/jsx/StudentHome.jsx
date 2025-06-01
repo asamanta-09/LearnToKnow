@@ -1,3 +1,5 @@
+import axios from 'axios'
+import { useState, useEffect } from "react"
 import CourseLog from "./CourseLog"
 import ActivityLog from "./ActivityLog"
 import ProfileDetails from "../../Utility-Student/jsx/ProfileDetails"
@@ -5,8 +7,6 @@ import Footer from "../../../Utility-all/Footer"
 import Navbar from "../../Utility-Student/jsx/Navbar"
 import styles from '../css/StudentHome.module.css'
 
-import { useState, useEffect } from "react"
-import axios from 'axios'
 
 const StudentHome = () => {
   const [online_courses, setOnline_courses] = useState([]);
@@ -14,6 +14,7 @@ const StudentHome = () => {
   const [notes, setNotes] = useState([]);
   const [playlists, setPlaylists] = useState([]);
 
+  //group by topic of the course
   const groupCoursesByTopic = (courses) => {
     return courses.reduce((acc, course) => {
       const topic = course.topic?.trim().toLowerCase(); // Trim and lowercase
@@ -27,6 +28,7 @@ const StudentHome = () => {
     }, {});
   };
 
+  //fetch opline couses
   useEffect(() => {
     axios.get('/course/getOnlineCourses')
       .then((response) => {
@@ -38,6 +40,7 @@ const StudentHome = () => {
       });
   }, []);
 
+  //fetch offline courses
   useEffect(() => {
     axios.get('/course/getOfflineCourses')
       .then((response) => {
@@ -49,7 +52,7 @@ const StudentHome = () => {
       });
   }, []);
 
-
+  //fetch notes
   useEffect(() => {
     axios.get('/notes/view')
       .then((response) => {
@@ -60,6 +63,7 @@ const StudentHome = () => {
       });
   }, []);
 
+  //fetch playlists
   useEffect(() => {
     axios.get('/playlist/view')
       .then((response) => {

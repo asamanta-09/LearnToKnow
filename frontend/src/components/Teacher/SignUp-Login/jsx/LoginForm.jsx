@@ -19,17 +19,17 @@ function LoginPageTeacher() {
     try {
       const response = await axios.post('/teacher/login', { email, password }, { withCredentials: true });
 
-      if (response.data.success) {
+      if (response.data?.success) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('email', email);
-        toast.success("Logged In successfully");
+        toast.success(response.data?.message || "Logged In successfully");
         navigate('/teachers/home');
       } else {
-        setError("Login failed. Please check your credentials.");
+        toast.error(response.data?.message || "Something went wrong");
       }
     } catch (error) {
       console.error('Error sending login data:', error);
-      setError("Invalid email or password. Please try again.");
+      toast.error("Invalid email or password. Please try again.");
     }
   };
 

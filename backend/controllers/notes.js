@@ -15,7 +15,7 @@ exports.addNewNote = async (req, res) => {
   let pdfUrl = "";
   let imageUrl = "";
 
-  const uploadFromBuffer = (fileBuffer, folder, resourceType = "auto") => {
+  const uploadFromBuffer = (fileBuffer, folder, resourceType = "raw") => {
     return new Promise((resolve, reject) => {
       const stream = cloudinary.uploader.upload_stream(
         { folder, resource_type: resourceType },
@@ -33,7 +33,7 @@ exports.addNewNote = async (req, res) => {
       const result = await uploadFromBuffer(
         req.files.pdf[0].buffer,
         "notes/pdf",
-        "auto"
+        "raw"
       );
       pdfUrl = result.secure_url;
     }
@@ -56,13 +56,14 @@ exports.addNewNote = async (req, res) => {
 
     res
       .status(201)
-      .json({ success: true, message: "Note created successfully" });
+      .json({ success: true, message: "Note added successfully" });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, error: "Failed to create note" });
+    res.status(500).json({ success: false, message: "Failed to create note" });
   }
 };
 
+//fetch all notes
 exports.getNotes = async (req, res) => {
   try {
     const notes = await Notes.find({});
@@ -77,6 +78,6 @@ exports.getNotes = async (req, res) => {
   } catch (error) {
     return res
       .status(500)
-      .json({ success: false, error: "Failed to fetch notes" });
+      .json({ success: false, message: "Failed to fetch notes" });
   }
 };

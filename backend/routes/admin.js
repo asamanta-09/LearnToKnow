@@ -1,10 +1,7 @@
 const express = require('express');
 const router=express.Router();
-
-const {login}=require("../controllers/admin");
-const {auth,isAdmin}=require('../middlewires/auth');
+const {login,logout}=require("../controllers/admin");
 
 router.post("/login",login);
-
-
+router.post("/logout",logout)
 module.exports = router;

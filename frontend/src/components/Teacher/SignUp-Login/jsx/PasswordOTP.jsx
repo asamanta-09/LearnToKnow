@@ -1,11 +1,9 @@
-import React, { useState } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { useState } from "react";
 import { toast } from 'react-toastify';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { IonIcon } from "@ionic/react";
 import { logoFirebase, keyOutline, arrowBackOutline ,closeOutline, menuOutline} from "ionicons/icons";
-
 import styles from "../css/enterotp.module.css";
 
 function PasswordOTPTeacher() {
@@ -29,6 +27,7 @@ function PasswordOTPTeacher() {
       })
       .catch((error) => {
         console.error('Error during OTP verification:', error);
+        toast.error("Failed: Something went wrong");
       });
   };
 

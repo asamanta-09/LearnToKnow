@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
 import axios from 'axios';
-import styles from '../css/ReferenceUploadForm.module.css';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
+import styles from '../css/ReferenceUploadForm.module.css';
 
 
 const ReferenceUploadForm = ({ onClose }) => {
@@ -34,15 +34,17 @@ const ReferenceUploadForm = ({ onClose }) => {
     formSubmission.append('youtube_link', formData.youtube_link);
 
     try {
-      const response = await axios.post('/playlist/create', formSubmission, {
-        headers: { 'Content-Type': 'multipart/form-data', "Authorization": `Bearer ${token}` },
-      });
-      console.log('Upload success:', response.data);
-      toast.success("Reference added successfully");
-      onClose();
+      const response = await axios.post('/playlist/create', formSubmission, { withCredentials: true });
+      if(response.data?.success){
+        toast.success(response.data?.message || "Reference added successfully");
+        onClose();
+      }
+      else{
+        toast.error(response.data?.message || "Something went wrong");
+      }
     } catch (error) {
       console.error('Upload failed:', error.response?.data || error.message);
-      toast.error("Failed to upload reference");
+      toast.error("Failed : Something went wrong");
     }
     finally {
       setLoading(false)

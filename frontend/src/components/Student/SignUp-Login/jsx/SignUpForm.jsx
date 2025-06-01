@@ -2,14 +2,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useState } from "react";
 import { Link, useNavigate } from 'react-router-dom'
-
 import { IonIcon } from "@ionic/react";
-import {
-  personOutline, mailOutline, callOutline, calendarOutline,
-  accessibilityOutline, createOutline, briefcaseOutline,
-  businessOutline, peopleOutline, schoolOutline, libraryOutline,
-  lockClosedOutline, logoFirebase, closeOutline, menuOutline
-} from "ionicons/icons";
+import {personOutline, mailOutline, callOutline, calendarOutline,accessibilityOutline, createOutline, briefcaseOutline,businessOutline, peopleOutline, schoolOutline, libraryOutline,lockClosedOutline, logoFirebase, closeOutline, menuOutline} from "ionicons/icons";
 
 import styles from "../css/SignupForm.module.css";
 
@@ -147,16 +141,16 @@ function SignupForm() {
             qualification: "", qualifying_institution: "", password: "", confirm_password: ""
           });
 
-          toast.success(res.data?.message);
+          toast.success(res.data?.message || "OTP sent to your email for verification"); 
           navigate('/students/email-verification', { state: { studentData } });
         } else {
-          toast.error(res.data?.message);
+          toast.error(res.data?.message || "Something went wrong");
         }
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error in verification:', error);
-        toast.error(res.data.message);
+        toast.error(res.data.message || "Failed:Something went wrong"); 
       });
   };
 
@@ -262,7 +256,7 @@ function SignupForm() {
       </div>
       <div className={styles.signup_btn_group}>
         <button type="button" className={styles.signup_btn} onClick={prevStep}>Back</button>
-        <button type="submit" className={styles.signup_btn} disabled={loading}>{loading ? 'Sending...' : 'Verify'}</button>
+        <button type="submit" className={styles.signup_btn} disabled={loading}>{loading ? 'Wait a moment...' : 'Verify'}</button>
       </div>
     </>
   ];

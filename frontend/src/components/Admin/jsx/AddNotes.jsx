@@ -1,7 +1,7 @@
+import axios from 'axios';
 import { useState, useEffect } from 'react';
 import NotesUploadForm from './NotesUploadForm';
 import styles from '../css/AddNotes.module.css';
-import axios from 'axios';
 
 
 const AddNotes = () => {
@@ -22,9 +22,8 @@ const AddNotes = () => {
   };
 
 
-
   useEffect(() => {
-    axios.get('/notes/view')
+    axios.get('/notes/view',{ withCredentials: true })
       .then((response) => {
         setNotes(response.data?.notes || []);
       })

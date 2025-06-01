@@ -107,7 +107,7 @@ exports.login = async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), //cookie valid for 3 days once created
         httpOnly: true,
       };
-      res.cookie("token", token, options).status(200).json({
+      res.cookie("token", token, options).status(200).json({ 
         success: true,
         token,
         student,
@@ -129,7 +129,6 @@ exports.login = async (req, res) => {
   }
 };
 
-
 // logout
 exports.logout = async (req, res) => {
   try {
@@ -146,7 +145,6 @@ exports.logout = async (req, res) => {
     });
   }
 };
-
 
 //generte OTP
 const otpStore = new Map();
