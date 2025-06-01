@@ -26,7 +26,7 @@ const ProfileCardDropDown = () => {
           }
         } catch (err) {
           console.error("Logout failed:", err);
-          toast.error(response.data?.message || "Something went wrong");
+          toast.error("Something went wrong");
         }
       }
     }
