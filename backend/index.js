@@ -6,7 +6,7 @@ const cors = require("cors");
 const app = express();
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://learntoknow.vercel.app"],
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
