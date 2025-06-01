@@ -14,7 +14,7 @@ const ProfileDetails = () => {
 
   useEffect(() => {
     if (!email) return; // skip if email is not set
-    axios.get(`${backendURL}/student/getProfileInfo`, { params: { email } })
+    axios.get(`${backendURL}/student/getProfileInfo`, { params: { email } , withCredentials: true, })
       .then((response) => {
         setProfile(response.data.student);
       })
