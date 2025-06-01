@@ -105,8 +105,10 @@ exports.login = async (req, res) => {
       student.token = token;
       student.password = undefined; //remove password only from user object not the database
       const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), //cookie valid for 3 days once created
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true,
+        sameSite: "None",
       };
       res.cookie("token", token, options).status(200).json({
         success: true,
@@ -257,9 +259,11 @@ exports.getProfileInfo = async (req, res) => {
 //getTeacherInfoByEmail
 exports.getTeacherInfoByEmail = async (req, res) => {
   try {
-    const { email } = req.query;  // get email from query param now
+    const { email } = req.query; // get email from query param now
     if (!email) {
-      return res.status(400).json({ message: "Email query parameter is required" });
+      return res
+        .status(400)
+        .json({ message: "Email query parameter is required" });
     }
     const teacher = await Teacher.findOne({ email });
     if (!teacher) {
@@ -271,4 +275,3 @@ exports.getTeacherInfoByEmail = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
-

@@ -37,17 +37,16 @@ exports.login = async (req, res) => {
       admin.token = token;
       admin.password = undefined;
       const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), //cookie valid for 3 days once created
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true,
+        sameSite: "None",
       };
-      return res
-        .cookie("token", token, options)
-        .status(200)
-        .json({
-          success: true,
-          message: "Admin logged in successfully",
-          token,
-        });
+      return res.cookie("token", token, options).status(200).json({
+        success: true,
+        message: "Admin logged in successfully",
+        token,
+      });
     } else {
       return res.status(403).json({
         success: false,

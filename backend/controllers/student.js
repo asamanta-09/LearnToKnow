@@ -104,10 +104,12 @@ exports.login = async (req, res) => {
       student.token = token;
       student.password = undefined; //remove password only from user object not the database
       const options = {
-        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), //cookie valid for 3 days once created
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
+        secure: true,
+        sameSite: "None",
       };
-      res.cookie("token", token, options).status(200).json({ 
+      res.cookie("token", token, options).status(200).json({
         success: true,
         token,
         student,
@@ -252,5 +254,3 @@ exports.getProfileInfo = async (req, res) => {
     });
   }
 };
-
-
