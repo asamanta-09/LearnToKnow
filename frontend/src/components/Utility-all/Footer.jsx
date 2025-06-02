@@ -17,7 +17,7 @@ const Footer = () => {
             <a href="faq">Terms of Use</a>
           </div>
           <div className={styles["footer-item"]}>
-            <p>Phone: <a href="tel:7439882608">xxxxxxxxxx</a></p>
+            <p>Phone: <a href="tel:xxxxxxxx">xxxxxxxxxx</a></p>
             <p>Email: <a href="mailto:learntoknow.co@gmail.com">learntoknow.co@gmail.com</a></p>
           </div>
         </div>
