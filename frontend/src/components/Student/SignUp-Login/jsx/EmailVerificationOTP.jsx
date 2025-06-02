@@ -21,7 +21,7 @@ function EmailVerificationOTP() {
     axios.post(`${backendURL}/student/verifyOTP`, data, { withCredentials: true })
       .then((response) => {
         if (response.data.success === true) {
-          return axios.post('/student/signUp', studentData, { withCredentials: true })
+          return axios.post(`${backendURL}/student/signUp`, studentData, { withCredentials: true })
         } else {
           toast.error(response.data?.message || "Something went wrong");
           throw new Error("Invalid OTP");
