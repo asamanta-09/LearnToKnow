@@ -18,7 +18,7 @@ const Footer = () => {
           </div>
           <div className={styles["footer-item"]}>
             <p>Phone: <a href="tel:7439882608">xxxxxxxxxx</a></p>
-            <p>Email: <a href="mailto:thegreencorner@gmail.com">learntoknow.co@gmail.com</a></p>
+            <p>Email: <a href="mailto:learntoknow.co@gmail.com">learntoknow.co@gmail.com</a></p>
           </div>
         </div>
         <div className={styles["footer-office-address"]}>
