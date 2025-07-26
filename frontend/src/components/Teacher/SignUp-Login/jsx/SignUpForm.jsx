@@ -132,7 +132,7 @@ function SignupFormTeacher() {
       password
     };
 
-    axios.post('/teacher/generateOTP', { email: teacherData.email, name: teacherData.name }, { withCredentials: true })
+    axios.post(`${backendURL}/teacher/generateOTP`, { email: teacherData.email, name: teacherData.name }, { withCredentials: true })
       .then((res) => {
         if (res.data?.success === true) {
           setFormData({
@@ -142,7 +142,7 @@ function SignupFormTeacher() {
           });
 
           toast.info(res.data?.message);
-          navigate(`${backendURL}/teachers/email-verification`, { state: { teacherData } });
+          navigate(`/teachers/email-verification`, { state: { teacherData } });
         } else {
           toast.error(res.data?.message || "Something went wrong");
         }
@@ -185,7 +185,7 @@ function SignupFormTeacher() {
         <button type="button" className={styles.signup_btn} onClick={nextStep}>Next</button>
       </div>
     </>,
- 
+
     <>
       <div className={styles.signup_input_box}>
         <span className={styles.signup_icon}><IonIcon icon={accessibilityOutline} /></span>

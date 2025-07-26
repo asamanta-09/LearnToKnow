@@ -153,6 +153,7 @@ exports.logout = async (req, res) => {
 const otpStore = new Map();
 exports.generateOTP = async (req, res) => {
   try {
+    console.log("hello")
     const { email, name } = req.body;
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiry = new Date(Date.now() + 10 * 60 * 1000);
