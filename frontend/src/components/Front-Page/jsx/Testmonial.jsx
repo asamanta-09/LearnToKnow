@@ -3,27 +3,27 @@ import styles from '../css/Testmonial.module.css'
 const testimonials = [
   {
     name: 'Priya Sharma',
-    role: 'Student',
+    role: 'Learner',
     message: 'LearnToKnow helped me find the perfect teacher. The platform is easy to use and the support is fantastic!',
-    image: 'https://i.pravatar.cc/100?img=1',
+    image: 'profile.png',
   },
   {
     name: 'Arjun Mehta',
     role: 'Parent',
     message: 'My son’s grades have improved so much thanks to the amazing teachers here. Highly recommended!',
-    image: 'https://i.pravatar.cc/100?img=2',
+    image: 'profile.png',
   },
   {
     name: 'Dr. Neha Kapoor',
     role: 'Educator',
     message: 'As a teacher, I love how easy it is to connect with motivated students. The platform is truly empowering.',
-    image: 'https://i.pravatar.cc/100?img=3',
+    image: 'profile.png',
   },
   {
     name: 'Rahul Jain',
-    role: 'Student',
+    role: 'Educator',
     message: 'Amazing experience! The user interface is so intuitive and clean. Kudos to the team!',
-    image: 'https://i.pravatar.cc/100?img=4',
+    image: 'profile.png',
   },
 ]
 
