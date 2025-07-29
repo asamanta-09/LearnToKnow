@@ -4,7 +4,7 @@ const WelcomeMessage = () => {
   return (
     <>
       <main className={styles.welcome}>
-        <h1 className={styles.title}>Hello World! <br />Welcome to LearnToKnow</h1>
+        <h1 className={styles.title}>Hello World! <br /><p>Welcome to LearnToKnow</p></h1>
         <p className={styles.subtitle}>
           Ready to start your learning journey? <br />
           Join thousands of students and teachers who trust <br />us to help them succeed — because your future deserves the best.
